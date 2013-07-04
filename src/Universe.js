@@ -7,14 +7,15 @@ var Universe = Base.extend( {
 		this.sun = new Sun( 'textures/sun.png', 0, 0 );
 		this.player = new Player();
 		this.planets = new DrawableStorage();
+		this.gravity_field_observer = new GravityFieldObserver();
 		
-		this.addPlanets( 100 );
+		this.addPlanets( 20 );
 		
 		this.camera.follow( this.player );
 		
-		this.player.draw( this.stage );
 		this.sun.draw( this.stage );
 		this.planets.drawAll( this.stage );
+		this.player.draw( this.stage );
 		
 		Game.stage.addChild( this.stage );
 	},
@@ -22,7 +23,7 @@ var Universe = Base.extend( {
 	{
 		for( i = 0; i <= n; i++ )
 		{
-			var planet = new Planet( 'textures/mars.png', this.sun, randomInt( 300, 20000 ), randomInt( 10, 50 ), randomInt( 10, 100 ) );
+			var planet = new Planet( 'textures/mars.png', this.sun, randomInt( 300, 1000 ), randomInt( -50, 50 ), randomInt( 10, 100 ) );
 			
 			if( i%2 === 0 )
 			{
@@ -38,6 +39,7 @@ var Universe = Base.extend( {
 	},
 	update: function()
 	{
+		this.gravity_field_observer.planets_vs_player( this.planets, this.player );
 		this.player.update();
 		this.camera.update();
 		this.planets.updateAll();
