@@ -23,13 +23,13 @@ var Universe = Base.extend( {
 	{
 		for( i = 0; i <= n; i++ )
 		{
-			var planet = new Planet( 'textures/mars.png', this.sun, randomInt( 300, 1000 ), randomInt( -50, 50 ), randomInt( 10, 100 ) );
+			var planet = new Planet( 'textures/mars.png', this.sun, randomInt( 300, 10000 ), randomInt( -30, 30 ), randomInt( 10, 100 ) );
 			
 			if( i%2 === 0 )
 			{
 				for( j = 0; j < randomInt( 1, 5 ); j++ )
 				{
-					var moon = new Planet( 'textures/pluto.png', planet, randomInt( 150, 200 ), randomInt( 200, 600 ), randomInt( 10, 100 ) );
+					var moon = new Planet( 'textures/pluto.png', planet, randomInt( 150, 200 ), randomInt( 200, 400 ), randomInt( 10, 100 ) );
 					this.planets.add( 'moon_' + i + '_' + j, moon );
 				}
 			}
@@ -39,6 +39,16 @@ var Universe = Base.extend( {
 	},
 	update: function()
 	{
+		if( Game.input_manager.is_key_down( 17 ) )
+		{
+			this.stage.scale.x = 0.2;
+			this.stage.scale.y = 0.2;
+		}
+		else
+		{
+			this.stage.scale.x = 1;
+			this.stage.scale.y = 1;
+		}
 		this.gravity_field_observer.planets_vs_player( this.planets, this.player );
 		this.player.update();
 		this.camera.update();

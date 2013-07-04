@@ -8,17 +8,25 @@ var Planet = OrbittingObject.extend( {
 		this.rotation_speed = randomInt( -20, 20 ) / 10000;
 		this.sprite.setInteractive( true );
 	},
-	update: function()
-	{
-		this.sprite.rotation = this.sprite.rotation + this.rotation_speed;
-		this.orbit();
-	},
 	click: function( data )
 	{
-		var window = new Ui.Window();
-		window.setTitle( 'Planet ' + this.getName() );
-		window.setContent( this.getWindowHtml() );
-		window.open();
+		if( ! this.tooltip )
+		{
+			this.tooltip = new Tooltip();
+		}
+		
+		if( ! this.is_selected )
+		{
+			this.tooltip.addLine( this.getName() );
+			this.tooltip.addLine( 'size: ' + this.sprite.width );
+			this.tooltip.show();
+			this.is_selected = true;
+		}
+		else
+		{
+			this.tooltip.hide();
+			this.is_selected = false;
+		}
 	},
 	getName: function()
 	{
@@ -28,9 +36,14 @@ var Planet = OrbittingObject.extend( {
 		}
 		return this.name;
 	},
-	getWindowHtml: function()
+	update: function()
 	{
-		return '<strong>Size:<strong> ' + this.sprite.width;
+		if( this.tooltip )
+		{
+			this.tooltip.setPosition( ( this.getWindowPosition().x + this.sprite.width / 2 ) + 10, this.getWindowPosition().y );
+		}
+		this.sprite.rotation = this.sprite.rotation + this.rotation_speed;
+		this.orbit();
 	}
 	
 } );

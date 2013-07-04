@@ -24,6 +24,13 @@ var Drawable = Base.extend( {
 	},
 	click: function( data )
 	{
+	},
+	getWindowPosition: function()
+	{
+		var x = Game.universe.stage.position.x + this.sprite.position.x;
+		var y = Game.universe.stage.position.y + this.sprite.position.y;
+		
+		return new PIXI.Point( x, y )
 	}
 
 } );

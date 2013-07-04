@@ -9,7 +9,7 @@ var Game = {
 		this.width = window.innerWidth;
 		this.height = window.innerHeight;
 		
-		this.stage = new PIXI.Stage( 0x031227, true );
+		this.stage = new PIXI.Stage( 0x071621, true );
 		this.renderer = PIXI.autoDetectRenderer( this.width, this.height );
 		
 		this.input_manager = new InputManager();
