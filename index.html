@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Multiverse</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #000000;
+		}
+	</style>
+</head>
+<body>
+	<script src="3p/pixi.js"></script>
+	<script src="3p/base.js"></script>
+	<script src="3p/jquery-1.10.0.min.js"></script>
+	
+	<script src="src/Utils.js"></script>
+	<script src="src/Game.js"></script>
+	<script src="src/InputManager.js"></script>
+	<script src="src/Universe.js"></script>
+	<script src="src/Drawable.js"></script>
+	<script src="src/Camera.js"></script>
+	
+	<script src="src/storage/Storage.js"></script>
+	<script src="src/storage/DrawableStorage.js"></script>
+	
+	<script src="src/active_objects/player.js"></script>
+	<script src="src/active_objects/space/OrbittingObject.js"></script>
+	<script src="src/active_objects/space/Planet.js"></script>
+	<script src="src/active_objects/space/Sun.js"></script>
+	
+	<script>
+		$( document ).ready( function()
+		{
+			Game.create();
+			Game.start();
+		} );
+	</script>
+</body>
+</html>
