@@ -1,0 +1,2 @@
+var SelectionManager = Base.extend( {
+} );

@@ -3,53 +3,52 @@ var Universe = Base.extend( {
 	constructor: function()
 	{
 		this.stage = new PIXI.DisplayObjectContainer();
+		
 		this.camera = new Camera( this.stage );
 		this.sun = new Sun( 'textures/sun.png', 0, 0 );
 		this.player = new Player();
 		this.planets = new DrawableStorage();
-		this.gravity_field_observer = new GravityFieldObserver();
 		
-		this.addPlanets( 20 );
+		this.addPlanets( 200, this.stage );
 		
 		this.camera.follow( this.player );
 		
 		this.sun.draw( this.stage );
-		this.planets.drawAll( this.stage );
 		this.player.draw( this.stage );
 		
 		Game.stage.addChild( this.stage );
 	},
-	addPlanets: function( n )
+	addPlanets: function( n, stage )
 	{
 		for( i = 0; i <= n; i++ )
 		{
-			var planet = new Planet( 'textures/mars.png', this.sun, randomInt( 300, 10000 ), randomInt( -30, 30 ), randomInt( 10, 100 ) );
+			var planet = new Planet( 'textures/mars.png', this.sun, randomInt( 300, 100000 ), randomInt( -30, 30 ), randomInt( 10, 100 ) );
 			
 			if( i%2 === 0 )
 			{
 				for( j = 0; j < randomInt( 1, 5 ); j++ )
 				{
-					var moon = new Planet( 'textures/pluto.png', planet, randomInt( 150, 200 ), randomInt( 200, 400 ), randomInt( 10, 100 ) );
+					var moon = new Planet( 'textures/pluto.png', planet, randomInt( 150, 200 ), randomInt( -100, 100 ), randomInt( 10, 100 ) );
 					this.planets.add( 'moon_' + i + '_' + j, moon );
 				}
 			}
 			
 			this.planets.add( 'planet_' + i, planet );
 		}
+		
+		this.planets.drawAll( stage );
 	},
 	update: function()
 	{
 		if( Game.input_manager.is_key_down( 17 ) )
 		{
-			this.stage.scale.x = 0.2;
-			this.stage.scale.y = 0.2;
+			this.camera.setZoom( 0.1 );
 		}
 		else
 		{
-			this.stage.scale.x = 1;
-			this.stage.scale.y = 1;
+			this.camera.setZoom( 1 );
 		}
-		this.gravity_field_observer.planets_vs_player( this.planets, this.player );
+		console.log( this.camera.zoom );
 		this.player.update();
 		this.camera.update();
 		this.planets.updateAll();
