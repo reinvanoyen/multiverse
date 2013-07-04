@@ -9,10 +9,21 @@ var Drawable = Base.extend( {
 		
 		this.sprite.position.x = 0;
 		this.sprite.position.y = 0;
+		
+		this.sprite.setInteractive( true );
+		
+		var that = this;
+		this.sprite.click = function( data )
+		{
+			that.click( data );
+		}
 	},
 	draw: function( stage )
 	{
 		stage.addChild( this.sprite );
+	},
+	click: function( data )
+	{
 	}
 
 } );
