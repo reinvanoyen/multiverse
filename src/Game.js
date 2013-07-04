@@ -9,11 +9,12 @@ var Game = {
 		this.width = window.innerWidth;
 		this.height = window.innerHeight;
 		
-		this.stage = new PIXI.Stage( 0x031227 );
+		this.stage = new PIXI.Stage( 0x031227, true );
 		this.renderer = PIXI.autoDetectRenderer( this.width, this.height );
 		
-		this.input_manager = new InputManager;
-		this.universe = new Universe;
+		this.input_manager = new InputManager();
+		this.universe = new Universe();
+		this.hud = new Ui.Hud();
 		
 		document.body.appendChild( this.renderer.view );
 	},
@@ -38,5 +39,4 @@ var Game = {
 	{
 		this.renderer.render( this.stage );
 	}
-	
 };
