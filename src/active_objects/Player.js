@@ -31,7 +31,6 @@ var Player = PhysicsObject.extend( {
 		}
 		if( Game.input_manager.is_key_down( 39 ) )
 		{
-			console.log( 'lol' );
 			this.velocity_x = Math.min( this.velocity_x + 0.2, 15 );
 		}
 		if( Game.input_manager.is_key_down( 40 ) )
