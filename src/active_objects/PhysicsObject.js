@@ -4,8 +4,8 @@ var PhysicsObject = Drawable.extend( {
 	{
 		this.base( texture_path );
 		
-		this.velocity_x = 1;
-		this.velocity_y = 1;
+		this.velocity_x = 0;
+		this.velocity_y = 0;
 	},
 	move: function()
 	{
