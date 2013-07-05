@@ -1,8 +1,9 @@
-Ui.Window = Base.extend( {
+var Window = Base.extend( {
 
 	constructor: function()
 	{
 		var that = this;
+		this.is_open = false;
 		this.$window = $( '<div>' ).addClass( 'window' ).hide().appendTo( $( 'body' ) );
 		this.$header = $( '<div>' ).addClass( 'window_header' ).appendTo( this.$window );
 		this.$title = $( '<span>' ).appendTo( this.$header );
@@ -24,10 +25,12 @@ Ui.Window = Base.extend( {
 	open: function()
 	{
 		this.$window.show();
+		this.is_open = true;
 	},
 	close: function()
 	{
 		this.$window.hide();
+		this.is_open = false;
 	}
 
 } );

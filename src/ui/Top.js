@@ -1,4 +1,4 @@
-Ui.Hud = Base.extend( {
+var Top = Base.extend( {
 
 	constructor: function()
 	{

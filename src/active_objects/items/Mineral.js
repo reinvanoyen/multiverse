@@ -1,0 +1,2 @@
+var Mineral = Item.extend( {
+} );

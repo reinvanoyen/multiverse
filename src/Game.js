@@ -14,7 +14,7 @@ var Game = {
 		
 		this.input_manager = new InputManager();
 		this.universe = new Universe();
-		this.hud = new Ui.Hud();
+		this.ui = new Ui();
 		
 		document.body.appendChild( this.renderer.view );
 	},

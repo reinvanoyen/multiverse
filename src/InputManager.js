@@ -16,6 +16,16 @@ var InputManager = Base.extend( {
 	is_key_down: function( key )
 	{
 		return !!this._keys_down[key];
+	},
+	bindKey: function( keycode, callback )
+	{
+		window.addEventListener( 'keydown', function( e )
+		{
+			if( e.which === keycode )
+			{
+				callback();
+			}
+		} );
 	}
 	
 } );
