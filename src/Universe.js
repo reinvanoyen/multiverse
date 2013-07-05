@@ -33,10 +33,9 @@ var Universe = Base.extend( {
 	{
 		for( var i = 1; i <= n; i++ )
 		{
-			var solar = new SolarSystem( randomInt( -30000, 30000 ), randomInt( -30000, 30000 ) );
+			var solar = new SolarSystem( randomInt( -100000, 100000 ), randomInt( -100000, 100000 ) );
 			solar.addPlanets( 10 );
 			this.solar_systems.add( 'solar_' + i, solar );
-			console.log( i );
 		}
 	},
 	bindScroll: function()
@@ -46,11 +45,11 @@ var Universe = Base.extend( {
 		{
 			if( e.originalEvent.wheelDelta /120 > 0 )
 			{
-				that.camera.setZoom( Math.min( that.camera.zoom + 0.01, 1 ) );
+				that.camera.setZoom( Math.min( that.camera.zoom + 0.05, 1 ) );
 			}
 			else
 			{
-				that.camera.setZoom( Math.max( that.camera.zoom - 0.01, 0.01) );
+				that.camera.setZoom( Math.max( that.camera.zoom - 0.05, 0.01) );
 			}
 		} );
 	},
