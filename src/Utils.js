@@ -62,3 +62,16 @@ function randomPlanetName()
 	
 	return name;
 }
+
+function randomPlanetSkin()
+{
+	var planet_skins = [
+		'textures/mars.png',
+		'textures/jupiter.png',
+		'textures/venus.png',
+		'textures/pluto.png',
+		'textures/earth.png'
+	];
+	
+	return planet_skins[ randomInt( 0, planet_skins.length - 1 ) ];
+}
