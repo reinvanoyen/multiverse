@@ -10,13 +10,13 @@ var SolarSystem = Base.extend( {
 	{
 		for( var i = 1; i <= n; i++ )
 		{
-			var planet = new Planet( 'textures/mars.png', this.sun, randomInt( 600, 5000 ), randomInt( -30, 30 ), randomInt( 10, 100 ) );
+			var planet = new Planet( randomPlanetSkin(), this.sun, randomInt( 600, 5000 ), randomInt( -30, 30 ), randomInt( 10, 100 ) );
 			
 			if( i%2 === 0 )
 			{
 				for( var j = 0; j < randomInt( 1, 5 ); j++ )
 				{
-					var moon = new Planet( 'textures/pluto.png', planet, randomInt( 150, 200 ), randomInt( -100, 100 ), randomInt( 10, 100 ) );
+					var moon = new Planet( 'textures/moon.png', planet, randomInt( 150, 200 ), randomInt( -100, 100 ), randomInt( 10, 100 ) );
 					this.planets.add( 'moon_' + i + '_' + j, moon );
 				}
 			}
