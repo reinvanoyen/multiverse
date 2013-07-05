@@ -7,46 +7,37 @@ var Universe = Base.extend( {
 		this.age = 0;
 		
 		this.camera = new Camera( this.stage );
-		this.sun = new Sun( 'textures/sun.png', 0, 0 );
 		this.player = new Player();
-		this.planets = new DrawableStorage();
 		this.sounds = new SoundStorage();
 		
+		// Sound
 		var theme_sound = new Sound( 'sound/music/theme.mp3', 'audio/mpeg' );
 		theme_sound.loop();
 		this.sounds.add( 'theme', theme_sound );
 		this.sounds.get( 'theme' ).play();
 		
-		this.addPlanets( 200, this.stage );
+		// Solar systems
+		this.solar_systems = new DrawableStorage();
+		this.addSolarSystems( 20 );
 		
-		this.camera.follow( this.player );
-		
-		this.sun.draw( this.stage );
-		this.player.draw( this.stage );
-		
+		// Scrolling
 		this.bindScroll();
 		
+		// Draw
+		this.camera.follow( this.player );
+		this.player.draw( this.stage );
+		this.solar_systems.drawAll( this.stage );
 		Game.stage.addChild( this.stage );
 	},
-	addPlanets: function( n, stage )
+	addSolarSystems: function( n )
 	{
-		for( i = 0; i <= n; i++ )
+		for( var i = 1; i <= n; i++ )
 		{
-			var planet = new Planet( 'textures/mars.png', this.sun, randomInt( 600, 50000 ), randomInt( -30, 30 ), randomInt( 10, 100 ) );
-			
-			if( i%2 === 0 )
-			{
-				for( j = 0; j < randomInt( 1, 10 ); j++ )
-				{
-					var moon = new Planet( 'textures/pluto.png', planet, randomInt( 150, 200 ), randomInt( -100, 100 ), randomInt( 10, 100 ) );
-					this.planets.add( 'moon_' + i + '_' + j, moon );
-				}
-			}
-			
-			this.planets.add( 'planet_' + i, planet );
+			var solar = new SolarSystem( randomInt( -30000, 30000 ), randomInt( -30000, 30000 ) );
+			solar.addPlanets( 10 );
+			this.solar_systems.add( 'solar_' + i, solar );
+			console.log( i );
 		}
-		
-		this.planets.drawAll( stage );
 	},
 	bindScroll: function()
 	{
@@ -55,11 +46,11 @@ var Universe = Base.extend( {
 		{
 			if( e.originalEvent.wheelDelta /120 > 0 )
 			{
-				that.camera.setZoom( 1 );
+				that.camera.setZoom( Math.min( that.camera.zoom + 0.01, 1 ) );
 			}
 			else
 			{
-				that.camera.setZoom( 0.1 );
+				that.camera.setZoom( Math.max( that.camera.zoom - 0.01, 0.01) );
 			}
 		} );
 	},
@@ -67,9 +58,9 @@ var Universe = Base.extend( {
 	{
 		this.age++;
 		Game.ui.top.updateAge( this.age );
+		this.solar_systems.updateAll();
 		this.player.update();
 		this.camera.update();
-		this.planets.updateAll();
 	}
 	
 } );
