@@ -6,30 +6,41 @@ var Player = PhysicsObject.extend( {
 	},
 	update: function()
 	{
-		console.log( this.velocity_x );
-	
-		this.velocity_x = this.velocity_x;
-		this.velocity_y = this.velocity_y;
+		
+		if( this.velocity_x < 0 )
+		{
+			this.velocity_x = Math.min( this.velocity_x + 0.05, 0 );
+		}
+		else
+		{
+			this.velocity_x = Math.max( this.velocity_x - 0.05, 0 );
+		}
+		
+		if( this.velocity_y < 0 )
+		{
+			this.velocity_y = Math.min( this.velocity_y + 0.05, 0 );
+		}
+		else
+		{
+			this.velocity_y = Math.max( this.velocity_y - 0.05, 0 );
+		}
 		
 		if( Game.input_manager.is_key_down( 37 ) )
 		{
-			this.velocity_y = 0;
-			this.velocity_x = -10;
+			this.velocity_x = Math.max( this.velocity_x - 0.2, -15 );
 		}
 		if( Game.input_manager.is_key_down( 39 ) )
 		{
-			this.velocity_y = 0;
-			this.velocity_x = 10;
+			console.log( 'lol' );
+			this.velocity_x = Math.min( this.velocity_x + 0.2, 15 );
 		}
 		if( Game.input_manager.is_key_down( 40 ) )
 		{
-			this.velocity_x = 0;
-			this.velocity_y = 10;
+			this.velocity_y = Math.min( this.velocity_y + 0.2, 15 );
 		}
 		if( Game.input_manager.is_key_down( 38 ) )
 		{
-			this.velocity_x = 0;
-			this.velocity_y = -10;
+			this.velocity_y = Math.max( this.velocity_y - 0.2, -15 );
 		}
 		
 		this.move();
