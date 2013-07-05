@@ -1,0 +1,1 @@
+var SoundStorage = Storage.extend( {} );

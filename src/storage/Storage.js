@@ -1,6 +1,9 @@
 var Storage = Base.extend( {
-
-	_objects: {},
+	
+	constructor: function()
+	{
+		this._objects = {};
+	},
 	add: function( k, v )
 	{
 		if( this._objects[ k ] )

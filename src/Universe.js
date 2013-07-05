@@ -10,6 +10,12 @@ var Universe = Base.extend( {
 		this.sun = new Sun( 'textures/sun.png', 0, 0 );
 		this.player = new Player();
 		this.planets = new DrawableStorage();
+		this.sounds = new SoundStorage();
+		
+		var theme_sound = new Sound( 'sound/music/theme.mp3', 'audio/mpeg' );
+		theme_sound.loop();
+		this.sounds.add( 'theme', theme_sound );
+		this.sounds.get( 'theme' ).play();
 		
 		this.addPlanets( 200, this.stage );
 		
@@ -18,13 +24,15 @@ var Universe = Base.extend( {
 		this.sun.draw( this.stage );
 		this.player.draw( this.stage );
 		
+		this.bindScroll();
+		
 		Game.stage.addChild( this.stage );
 	},
 	addPlanets: function( n, stage )
 	{
 		for( i = 0; i <= n; i++ )
 		{
-			var planet = new Planet( 'textures/mars.png', this.sun, randomInt( 300, 50000 ), randomInt( -30, 30 ), randomInt( 10, 100 ) );
+			var planet = new Planet( 'textures/mars.png', this.sun, randomInt( 600, 50000 ), randomInt( -30, 30 ), randomInt( 10, 100 ) );
 			
 			if( i%2 === 0 )
 			{
@@ -40,20 +48,26 @@ var Universe = Base.extend( {
 		
 		this.planets.drawAll( stage );
 	},
+	bindScroll: function()
+	{
+		var that = this;
+		$( window ).bind( 'mousewheel', function( e )
+		{
+			if( e.originalEvent.wheelDelta /120 > 0 )
+			{
+				that.camera.setZoom( 1 );
+			}
+			else
+			{
+				that.camera.setZoom( 0.1 );
+			}
+		} );
+	},
 	update: function()
 	{
 		this.age++;
 		
-		Game.hud.updateAge( this.age );
-		
-		if( Game.input_manager.is_key_down( 17 ) )
-		{
-			this.camera.setZoom( 0.05 );
-		}
-		else
-		{
-			this.camera.setZoom( 1 );
-		}
+		Game.hud.updateAge( this.age++ );
 		this.player.update();
 		this.camera.update();
 		this.planets.updateAll();

@@ -1,4 +1,4 @@
-var Player = Drawable.extend( {
+var Player = PhysicsObject.extend( {
 
 	constructor: function()
 	{
@@ -6,24 +6,33 @@ var Player = Drawable.extend( {
 	},
 	update: function()
 	{
+		console.log( this.velocity_x );
+	
+		this.velocity_x = this.velocity_x;
+		this.velocity_y = this.velocity_y;
+		
 		if( Game.input_manager.is_key_down( 37 ) )
 		{
-			this.sprite.position.x = this.sprite.position.x - 10;
-			this.sprite.rotation = this.sprite.rotation - 0.05;
+			this.velocity_y = 0;
+			this.velocity_x = -10;
 		}
 		if( Game.input_manager.is_key_down( 39 ) )
 		{
-			this.sprite.position.x = this.sprite.position.x + 10;
-			this.sprite.rotation = this.sprite.rotation + 0.05;
+			this.velocity_y = 0;
+			this.velocity_x = 10;
 		}
 		if( Game.input_manager.is_key_down( 40 ) )
 		{
-			this.sprite.position.y = this.sprite.position.y + 10;
+			this.velocity_x = 0;
+			this.velocity_y = 10;
 		}
 		if( Game.input_manager.is_key_down( 38 ) )
 		{
-			this.sprite.position.y = this.sprite.position.y - 10;
+			this.velocity_x = 0;
+			this.velocity_y = -10;
 		}
+		
+		this.move();
 	}
 
 } );

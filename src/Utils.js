@@ -24,6 +24,7 @@ function randomPlanetName()
 		'las',
 		'polis',
 		'poxu',
+		'rein'
 	];
 	
 	var end_syllables = [
@@ -53,7 +54,7 @@ function randomPlanetName()
 		'ury',
 		'atops',
 		'aros',
-		'ora'
+		'ora',
 	];
 	
 	var name = start_syllables[ randomInt( 0, start_syllables.length - 1 ) ];
