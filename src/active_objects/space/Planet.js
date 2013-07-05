@@ -13,12 +13,12 @@ var Planet = OrbittingObject.extend( {
 		if( ! this.tooltip )
 		{
 			this.tooltip = new Tooltip();
+			this.tooltip.addLine( this.getName() );
+			this.tooltip.addLine( 'size: ' + this.sprite.width );
 		}
 		
 		if( ! this.is_selected )
 		{
-			this.tooltip.addLine( this.getName() );
-			this.tooltip.addLine( 'size: ' + this.sprite.width );
 			this.tooltip.show();
 			this.is_selected = true;
 		}

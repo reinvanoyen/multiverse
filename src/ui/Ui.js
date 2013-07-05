@@ -15,7 +15,7 @@ var Ui = Base.extend( {
 		var that = this;
 		
 		// Assign actions
-		this.actions.add( 'inventory', new Action( 'Inventory (i)', 73, function()
+		this.actions.add( 'inventory', new Action( 'Inventory (I)', 'ui/icons/inventory.png', 73, function()
 		{
 			if( that.inventory.is_open )
 			{
@@ -27,15 +27,22 @@ var Ui = Base.extend( {
 			}
 		} ) );
 		
-		this.actions.add( 'notification_test', new Action( 'Test notification (m)', 77, function()
+		this.actions.add( 'notification', new Action( 'Test notification (M)', 'ui/icons/inventory.png', 77, function()
 		{
 			that.notification.show();
-		} ) )
+		} ) );
 		
-		this.actions.add( 'alert_test', new Action( 'Message from rein (e)', 69, function()
+		this.actions.add( 'alert', new Action( 'Message from rein (E)', 'ui/icons/inventory.png', 69, function()
 		{
-			alert( 'Rein calling from space. Actionbar is huge success. Flexibility to add wicked insane crazy cool actions! Over and out.' );
-		} ) )
+			new Alert( 'Rein calling from space', 'Welwelwel, een alertje. Nu nog een OK knopke om te sluiten en wa styling.' );
+		} ) );
+		
+		this.actions.add( 'pause', new Action( 'Pause (P)', 'ui/icons/pause.png', 80, function()
+		{
+			Game.stop();
+			that.notification.setText( 'Game paused' );
+			that.notification.show();
+		} ) );
 		
 		// Create our actionbar
 		this.actionbar = new ActionBar( this.actions );

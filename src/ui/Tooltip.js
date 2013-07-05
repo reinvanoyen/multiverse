@@ -28,8 +28,7 @@ var Tooltip = Base.extend( {
 	},
 	hide: function()
 	{
-		this.text = '';
-		this.$container.hide().empty();
+		this.$container.hide();
 	},
 	show: function( stage )
 	{
