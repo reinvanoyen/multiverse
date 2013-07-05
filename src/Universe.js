@@ -67,7 +67,7 @@ var Universe = Base.extend( {
 	{
 		this.age++;
 		
-		Game.hud.updateAge( this.age++ );
+		Game.hud.updateAge( this.age );
 		this.player.update();
 		this.camera.update();
 		this.planets.updateAll();
