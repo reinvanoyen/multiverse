@@ -49,7 +49,7 @@ var Universe = Base.extend( {
 			}
 			else
 			{
-				that.camera.setZoom( Math.max( that.camera.zoom - 0.05, 0.01) );
+				that.camera.setZoom( Math.max( that.camera.zoom - 0.05, 0.02) );
 			}
 		} );
 	},

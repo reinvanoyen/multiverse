@@ -27,10 +27,12 @@ var Player = PhysicsObject.extend( {
 		
 		if( Game.input_manager.is_key_down( 37 ) )
 		{
+			this.velocity_y = Math.max( this.velocity_y - 0.1, -15 );
 			this.velocity_x = Math.max( this.velocity_x - 0.2, -15 );
 		}
 		if( Game.input_manager.is_key_down( 39 ) )
 		{
+			this.velocity_y = Math.max( this.velocity_y - 0.1, -15 );
 			this.velocity_x = Math.min( this.velocity_x + 0.2, 15 );
 		}
 		if( Game.input_manager.is_key_down( 40 ) )
@@ -41,6 +43,8 @@ var Player = PhysicsObject.extend( {
 		{
 			this.velocity_y = Math.max( this.velocity_y - 0.2, -15 );
 		}
+		
+		this.sprite.rotation = this.velocity_x / 10;
 		
 		this.move();
 	}
