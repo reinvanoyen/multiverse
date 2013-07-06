@@ -53,6 +53,8 @@ var Planet = OrbittingObject.extend( {
 		{
 			Game.universe.player.velocity_x = -Game.universe.player.velocity_x;
 			Game.universe.player.velocity_y = -Game.universe.player.velocity_y;
+			
+			Game.universe.player.hurt( 5 );
 		}
 	}
 	
