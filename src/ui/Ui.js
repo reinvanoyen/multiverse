@@ -5,6 +5,8 @@ var Ui = Base.extend( {
 		// Create actions
 		this.actions = new ActionStorage();
 		
+		this.waypoints = new DrawableStorage();
+		
 		// Create our UI objects
 		this.inventory = new Inventory();
 		this.top = new Top();
@@ -34,7 +36,7 @@ var Ui = Base.extend( {
 			}
 		} ) );
 		
-		this.actions.add( 'log', new Action( 'Log (L)', 'ui/icons/inventory.png', 76, function()
+		this.actions.add( 'log', new Action( 'Log (L)', 'ui/icons/log.png', 76, function()
 		{
 			if( that.log.is_visible )
 			{
@@ -48,17 +50,12 @@ var Ui = Base.extend( {
 			}
 		} ) );
 		
-		this.actions.add( 'alert', new Action( 'Message from rein (E)', 'ui/icons/inventory.png', 69, function()
-		{
-			new Alert( 'Rein calling from space', 'Welwelwel, een alertje. Nu nog een OK knopke om te sluiten en wa styling.' );
-			that.log.addLine( 'Opened message from Rein', 'neutral' );
-		} ) );
-		
 		this.actions.add( 'pause', new Action( 'Pause (P)', 'ui/icons/pause.png', 80, function()
 		{
 			if( Game.state === 'playing' )
 			{
 				Game.stop();
+				Game.sounds.stopAll();
 				that.notification.setText( 'Game paused' );
 				that.notification.show();
 			}
@@ -70,6 +67,23 @@ var Ui = Base.extend( {
 			}
 		} ) );
 		
+		this.actions.add( 'random_planet', new Action( 'Random planet (R)', 'ui/icons/planet.png', 82, function()
+		{
+			if( Game.universe.camera.follow_object !== Game.universe.player )
+			{
+				Game.universe.camera.follow( Game.universe.player );
+			}
+			else
+			{
+				var planet = randomPlanet();
+			
+				Game.universe.camera.follow( planet );
+				var notification = new Notification();
+				notification.setText( 'Planet ' + planet.getName() );
+				notification.show();
+			}
+		} ) )
+		
 		// Create our actionbar
 		this.actionbar = new ActionBar( this.actions );
 		
@@ -78,34 +92,28 @@ var Ui = Base.extend( {
 		notification.setText( 'Dear citizens,' );
 		
 		var notification2 = new Notification();
-		notification2.setText( 'Don\'t mind the framedrops.' );
+		notification2.setText( 'Today I added waypoints' );
 		
 		var notification3 = new Notification();
-		notification3.setText( 'I\'ll fix them later ;)' );
+		notification3.setText( 'It\'s not finished yet' );
 		
 		var notification4 = new Notification();
-		notification4.setText( 'New feature: press L for the game log' );
+		notification4.setText( 'But is fun already :)' );
 		
 		var notification5 = new Notification();
-		notification5.setText( 'Zoom out using scroll!' );
+		notification5.setText( 'Here, let me set one at a random position' );
 		
 		var notification6 = new Notification();
-		notification6.setText( 'Also, this universe has only one song!' );
+		notification6.setText( 'I\'ll take away some health now' );
 		
 		var notification7 = new Notification();
-		notification7.setText( 'Prepare yourself' );
+		notification7.setText( 'One' );
 		
 		var notification8 = new Notification();
-		notification8.setText( 'I\'ll take away some health now' );
+		notification8.setText( 'Two' );
 		
 		var notification9 = new Notification();
-		notification9.setText( 'One' );
-		
-		var notification10 = new Notification();
-		notification10.setText( 'Two' );
-		
-		var notification11 = new Notification();
-		notification11.setText( 'Three' );
+		notification9.setText( 'Three' );
 		
 		setTimeout( function()
 		{
@@ -125,44 +133,47 @@ var Ui = Base.extend( {
 		setTimeout( function()
 		{
 			notification4.show();
-		}, 10000 );
+		}, 8000 );
 		
 		setTimeout( function()
 		{
 			notification5.show();
-		}, 13000 );
+		}, 11000 );
+		
+		setTimeout( function()
+		{
+			var waypoint = new Waypoint();
+			waypoint.setPosition( randomInt( -10000, 10000 ), randomInt( -10000, 10000 ) );
+			waypoint.draw( Game.universe.stage );
+			that.waypoints.add( 'waypoint', waypoint );
+			that.log.addLine( 'Waypoint set', 'success' );
+		}, 14000 );
 		
 		setTimeout( function()
 		{
 			notification6.show();
-		}, 20000 );
+		}, 25000 );
 		
 		setTimeout( function()
 		{
 			notification7.show();
-		}, 23000 );
+		}, 27000 );
 		
 		setTimeout( function()
 		{
 			notification8.show();
-		}, 30000 );
+		}, 29000 );
 		
 		setTimeout( function()
 		{
 			notification9.show();
-		}, 33000 );
-		
-		setTimeout( function()
-		{
-			notification10.show();
-		}, 35000 );
-		
-		setTimeout( function()
-		{
-			notification11.show();
 			Game.universe.player.setHealth( 67 );
-		}, 37000 );
+		}, 31000 );
 		
+	},
+	update: function()
+	{
+		this.waypoints.updateAll();
 	}
 
 } );
