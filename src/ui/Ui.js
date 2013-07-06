@@ -55,13 +55,14 @@ var Ui = Base.extend( {
 			if( Game.state === 'playing' )
 			{
 				Game.stop();
-				Game.sounds.stopAll();
+				Game.sounds.muteAll();
 				that.notification.setText( 'Game paused' );
 				that.notification.show();
 			}
 			else
 			{
 				Game.start();
+				Game.sounds.unmuteAll();
 				that.notification.setText( 'Game unpaused' );
 				that.notification.show();
 			}
