@@ -6,6 +6,20 @@ var SoundStorage = Storage.extend( {
 		{
 			e.stop();
 		} );
+	},
+	muteAll: function()
+	{
+		this.each( function( e )
+		{
+			e.mute();
+		} );
+	},
+	unmuteAll: function()
+	{
+		this.each( function( e )
+		{
+			e.unmute();
+		} );
 	}
 
 } );

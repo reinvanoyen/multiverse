@@ -17,6 +17,14 @@ var Sound = Base.extend( {
 	loop: function()
 	{
 		this.audio.loop = true;
+	},
+	mute: function()
+	{
+		this.audio.muted = true;
+	},
+	unmute: function()
+	{
+		this.audio.muted = false;
 	}
 
 } );
