@@ -9,9 +9,19 @@ var Point = Base.extend( {
 	{
 		return Math.atan2( point.x - this.x, point.y - this.y );
 	},
+	getDistance: function( point )
+	{
+		var xs = this.x - point.x;
+		xs = xs * xs;
+		
+		var ys = this.y - point.y;
+		ys = ys * ys;
+		
+		return Math.sqrt( xs + ys );
+	},
 	equals: function( point )
 	{
-		return point.x == this.x && point.y == this.y;
+		return point.x === this.x && point.y === this.y;
 	}
 
 } );
