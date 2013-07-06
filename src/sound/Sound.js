@@ -9,6 +9,12 @@ var Sound = Base.extend( {
 	play: function()
 	{
 		this.audio.play();
+		this.audio.volume = 1;
+	},
+	stop: function()
+	{
+		this.audio.pause();
+		this.audio.currentTime = 0;
 	},
 	loop: function()
 	{
