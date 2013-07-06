@@ -75,3 +75,12 @@ function randomPlanetSkin()
 	
 	return planet_skins[ randomInt( 0, planet_skins.length - 1 ) ];
 }
+
+function randomPlanet()
+{
+	var solar_systems = Game.universe.solar_systems;
+	var selected_solar_system = solar_systems.get( 'solar_' + randomInt( 1, solar_systems.length() ) );
+	var planets = selected_solar_system.planets;
+	var selected_planet = planets.get( 'planet_' + randomInt( 1, planets.length() ) );
+	return selected_planet;
+}

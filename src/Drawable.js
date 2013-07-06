@@ -10,6 +10,8 @@ var Drawable = Base.extend( {
 		this.sprite.position.x = 0;
 		this.sprite.position.y = 0;
 		
+		this.position = new Point( 0, 0 );
+		
 		this.sprite.setInteractive( true );
 		
 		var that = this;
@@ -17,6 +19,13 @@ var Drawable = Base.extend( {
 		{
 			that.click( data );
 		}
+	},
+	setPosition: function( x, y )
+	{
+		this.sprite.position.x = x;
+		this.sprite.position.y = y;
+		this.position.x = x;
+		this.position.y = y;
 	},
 	draw: function( stage )
 	{

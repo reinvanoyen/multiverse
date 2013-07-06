@@ -20,11 +20,18 @@ var Action = Base.extend( {
 	},
 	bindKey: function()
 	{
-		Game.input_manager.bindKey( this.keycode, this.action );
+		var that = this;
+		Game.input_manager.bindKey( this.keycode, function()
+		{
+			that.performAction( that.action )
+		} );
 	},
 	bindClick: function()
 	{
-		this.$container.click( this.action );
+		var that = this;
+		this.$container.click( function() {
+			that.performAction( that.action )
+		} );
 	},
 	bindHover: function()
 	{
@@ -36,6 +43,11 @@ var Action = Base.extend( {
 		{
 			that.tooltip.hide();
 		} );
+	},
+	performAction: function( action )
+	{
+		Game.sounds.get( 'action' ).play();
+		action();
 	}
 
 } );

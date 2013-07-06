@@ -27,5 +27,10 @@ var Storage = Base.extend( {
 		{
 			callback( this._objects[ key ] );
 		}
+	},
+	length: function()
+	{
+		return Object.keys( this._objects ).length;
 	}
+	
 } );

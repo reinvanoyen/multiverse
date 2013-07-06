@@ -2,8 +2,7 @@ var SolarSystem = Base.extend( {
 
 	constructor: function( x, y )
 	{
-		this.center = new PIXI.Point( x, y );
-		this.sun = this.sun = new Sun( 'textures/sun.png', this.center.x, this.center.y );
+		this.sun = this.sun = new Sun( 'textures/sun.png', x, y );
 		this.planets = new DrawableStorage();
 	},
 	addPlanets: function( n )
@@ -12,6 +11,7 @@ var SolarSystem = Base.extend( {
 		{
 			var planet = new Planet( randomPlanetSkin(), this.sun, randomInt( 600, 5000 ), randomInt( -30, 30 ), randomInt( 10, 100 ) );
 			
+			/*
 			if( i%2 === 0 )
 			{
 				for( var j = 0; j < randomInt( 1, 5 ); j++ )
@@ -20,6 +20,7 @@ var SolarSystem = Base.extend( {
 					this.planets.add( 'moon_' + i + '_' + j, moon );
 				}
 			}
+			*/
 			
 			this.planets.add( 'planet_' + i, planet );
 		}

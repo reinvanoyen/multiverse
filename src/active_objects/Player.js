@@ -13,11 +13,18 @@ var Player = PhysicsObject.extend( {
 		
 		if( health_difference < 0  )
 		{
-			Game.ui.log.addLine( health_difference + ' health', 'error' );
+			Game.ui.log.addLine( health_difference + ' health', 'warning' );
 		}
 		else
 		{
 			Game.ui.log.addLine( '+' + health_difference + ' health', 'success' );
+		}
+		
+		if( this.health <= 0 )
+		{
+			Game.ui.log.addLine( 'You are dead', 'error' );
+			Game.ui.notification.setText( 'You are dead' );
+			Game.ui.notification.show();
 		}
 	},
 	update: function()
@@ -41,43 +48,46 @@ var Player = PhysicsObject.extend( {
 			this.velocity_y = Math.max( this.velocity_y - 0.05, 0 );
 		}
 		
-		if(
-			Game.input_manager.is_key_down( 37 )
-			|| Game.input_manager.is_key_down( 38 )
-			|| Game.input_manager.is_key_down( 39 )
-			|| Game.input_manager.is_key_down( 40 )
-		)
+		if( this.health > 0 )
 		{
-			if( Game.input_manager.is_key_down( 37 ) )
+			if(
+				Game.input_manager.is_key_down( 37 )
+				|| Game.input_manager.is_key_down( 38 )
+				|| Game.input_manager.is_key_down( 39 )
+				|| Game.input_manager.is_key_down( 40 )
+			)
 			{
-				this.velocity_y = Math.max( this.velocity_y - 0.1, -15 );
-				this.velocity_x = Math.max( this.velocity_x - 0.2, -15 );
-				Game.universe.sounds.get( 'booster' ).play();
+				if( Game.input_manager.is_key_down( 37 ) )
+				{
+					this.velocity_y = Math.max( this.velocity_y - 0.1, -15 );
+					this.velocity_x = Math.max( this.velocity_x - 0.2, -15 );
+					Game.sounds.get( 'booster' ).play();
+				}
+				if( Game.input_manager.is_key_down( 39 ) )
+				{
+					this.velocity_y = Math.max( this.velocity_y - 0.1, -15 );
+					this.velocity_x = Math.min( this.velocity_x + 0.2, 15 );
+					Game.sounds.get( 'booster' ).play();
+				}
+				
+				if( Game.input_manager.is_key_down( 40 ) )
+				{
+					this.velocity_y = Math.min( this.velocity_y + 0.2, 15 );
+					Game.sounds.get( 'booster' ).play();
+				}
+				
+				if( Game.input_manager.is_key_down( 38 ) )
+				{
+					this.velocity_y = Math.max( this.velocity_y - 0.3, -15 );
+					Game.sounds.get( 'booster' ).play();
+				}
 			}
-			if( Game.input_manager.is_key_down( 39 ) )
+			else
 			{
-				this.velocity_y = Math.max( this.velocity_y - 0.1, -15 );
-				this.velocity_x = Math.min( this.velocity_x + 0.2, 15 );
-				Game.universe.sounds.get( 'booster' ).play();
-			}
-			
-			if( Game.input_manager.is_key_down( 40 ) )
-			{
-				this.velocity_y = Math.min( this.velocity_y + 0.2, 15 );
-				Game.universe.sounds.get( 'booster' ).play();
-			}
-			
-			if( Game.input_manager.is_key_down( 38 ) )
-			{
-				this.velocity_y = Math.max( this.velocity_y - 0.3, -15 );
-				Game.universe.sounds.get( 'booster' ).play();
+				Game.sounds.get( 'booster' ).stop();
 			}
 		}
-		else
-		{
-			Game.universe.sounds.get( 'booster' ).stop();
-		}
-		
+			
 		this.sprite.rotation = this.velocity_x / 10;
 		
 		this.move();

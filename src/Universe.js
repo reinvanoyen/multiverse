@@ -8,15 +8,6 @@ var Universe = Base.extend( {
 		
 		this.camera = new Camera( this.stage );
 		this.player = new Player();
-		this.sounds = new SoundStorage();
-		
-		// Sound
-		var theme_sound = new Sound( 'sound/music/theme.mp3', 'audio/mpeg' );
-		theme_sound.loop();
-		this.sounds.add( 'theme', theme_sound );
-		this.sounds.add( 'sidethruster', new Sound( 'sound/ship/sidethruster1.wav', 'audio/wav' ) );
-		this.sounds.add( 'booster', new Sound( 'sound/ship/booster1.wav', 'audio/wav' ) );
-		this.sounds.get( 'theme' ).play();
 		
 		// Solar systems
 		this.solar_systems = new DrawableStorage();

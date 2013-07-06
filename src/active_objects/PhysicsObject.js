@@ -9,8 +9,7 @@ var PhysicsObject = Drawable.extend( {
 	},
 	move: function()
 	{
-		this.sprite.position.x = this.sprite.position.x + this.velocity_x;
-		this.sprite.position.y = this.sprite.position.y + this.velocity_y;
+		this.setPosition( this.sprite.position.x + this.velocity_x, this.sprite.position.y + this.velocity_y);
 	}
 	
 } );

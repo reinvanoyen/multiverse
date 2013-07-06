@@ -17,8 +17,8 @@ var OrbittingObject = Drawable.extend( {
 		this.orbit_center.y = this.orbit_object.sprite.position.y;
 		
 		this.angle += this.velocity;
-		this.sprite.position.x = this.orbit_center.x + this.orbit_radius * Math.cos( this.angle );
-		this.sprite.position.y = this.orbit_center.y + this.orbit_radius * Math.sin( this.angle );
+		
+		this.setPosition( this.orbit_center.x + this.orbit_radius * Math.cos( this.angle ), this.orbit_center.y + this.orbit_radius * Math.sin( this.angle ) );
 	}
 	
 } );

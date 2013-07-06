@@ -4,8 +4,7 @@ var Sun = Drawable.extend( {
 	{
 		this.base( texture_path );
 	
-		this.sprite.position.x = x;
-		this.sprite.position.y = y;
+		this.setPosition( x, y );
 	}
 	
 } );

@@ -20,6 +20,8 @@ var Game = {
 		this.universe = new Universe();
 		this.ui = new Ui();
 		
+		this.loadSounds();
+		
 		document.body.appendChild( this.renderer.view );
 	},
 	start: function()
@@ -40,9 +42,23 @@ var Game = {
 	update: function()
 	{
 		this.universe.update();
+		this.ui.update();
 	},
 	draw: function()
 	{
 		this.renderer.render( this.stage );
+	},
+	loadSounds: function()
+	{
+		this.sounds = new SoundStorage();
+		
+		// Sound
+		var theme_sound = new Sound( 'sound/music/theme.mp3', 'audio/mpeg' );
+		theme_sound.loop();
+		this.sounds.add( 'theme', theme_sound );
+		this.sounds.add( 'sidethruster', new Sound( 'sound/ship/sidethruster1.wav', 'audio/wav' ) );
+		this.sounds.add( 'booster', new Sound( 'sound/ship/booster1.wav', 'audio/wav' ) );
+		this.sounds.add( 'action', new Sound( 'sound/ui/action.mp3', 'audio/mpeg' ) );
+		this.sounds.get( 'theme' ).play();
 	}
 };
