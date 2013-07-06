@@ -14,6 +14,7 @@ var Mineral = Item.extend( {
 			if( distance_to_player < ( this.sprite.width * 2 ) )
 			{
 				this.addToInventory();
+				Game.sounds.get( 'mineral_pickup' ).play();
 			}
 		}
 		else
