@@ -5,26 +5,28 @@ var Player = PhysicsObject.extend( {
 		this.base( 'textures/player.png' );
 		this.health = 100;
 	},
+	hurt: function( n )
+	{
+		this.setHealth( this.health - n );
+		Game.ui.log.addLine( '-' + n + ' health', 'warning' );
+	},
+	heal: function( n )
+	{
+		this.setHealth( this.health + n );
+		Game.ui.log.addLine( '-' + n + ' health', 'success' );
+	},
 	setHealth: function( n )
 	{
-		var health_difference = n - this.health;
-		this.health = n;
-		Game.ui.healthbar.setValue( this.health );
-		
-		if( health_difference < 0  )
-		{
-			Game.ui.log.addLine( health_difference + ' health', 'warning' );
-		}
-		else
-		{
-			Game.ui.log.addLine( '+' + health_difference + ' health', 'success' );
-		}
-		
 		if( this.health <= 0 )
 		{
 			Game.ui.log.addLine( 'You are dead', 'error' );
 			Game.ui.notification.setText( 'You are dead' );
 			Game.ui.notification.show();
+		}
+		else
+		{
+			this.health = n;
+			Game.ui.healthbar.setValue( this.health );
 		}
 	},
 	update: function()
