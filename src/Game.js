@@ -6,6 +6,10 @@ var Game = {
 	},
 	create: function()
 	{
+		this.state = 'initialising';
+		
+		$( 'body' ).attr( 'oncontextmenu', 'return false;' );
+		
 		this.width = window.innerWidth;
 		this.height = window.innerHeight;
 		
@@ -26,9 +30,11 @@ var Game = {
 			that.update();
 			that.draw();
 		}, 1000 / this.settings.fps );
+		this.state = 'playing';
 	},
 	stop: function()
 	{
+		this.state = 'paused';
 		clearInterval( this.loopInterval );
 	},
 	update: function()
