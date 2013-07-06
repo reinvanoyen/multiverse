@@ -44,6 +44,16 @@ var Planet = OrbittingObject.extend( {
 		}
 		this.sprite.rotation = this.sprite.rotation + this.rotation_speed;
 		this.orbit();
+		this.interactWithPlayer();
+	},
+	interactWithPlayer: function()
+	{
+		var distance_to_player = Game.universe.player.position.getDistance( this.position );
+		if( distance_to_player < ( this.sprite.width ) / 1.5 )
+		{
+			Game.universe.player.velocity_x = -Game.universe.player.velocity_x;
+			Game.universe.player.velocity_y = -Game.universe.player.velocity_y;
+		}
 	}
 	
 } );
