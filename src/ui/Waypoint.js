@@ -4,7 +4,7 @@ var Waypoint = Drawable.extend( {
 	{
 		this.base( 'textures/waypoint.png' );
 		this.arrow = new Drawable( 'textures/waypoint_arrow.png' );
-		this.arrow.sprite.anchor.y = -5;
+		this.arrow.sprite.anchor.y = -7;
 		this.arrow.draw( Game.stage );
 	},
 	update: function()
