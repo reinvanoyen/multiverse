@@ -105,19 +105,7 @@ var Ui = Base.extend( {
 		notification5.setText( 'Here, let me set one at a random position' );
 		
 		var notification6 = new Notification();
-		notification6.setText( 'I\'ll take away some health now' );
-		
-		var notification7 = new Notification();
-		notification7.setText( 'One' );
-		
-		var notification8 = new Notification();
-		notification8.setText( 'Two' );
-		
-		var notification9 = new Notification();
-		notification9.setText( 'Three' );
-		
-		var notification10 = new Notification();
-		notification10.setText( 'Added 2 more waypoints!' );
+		notification6.setText( 'Added 2 more waypoints!' );
 		
 		setTimeout( function()
 		{
@@ -156,26 +144,7 @@ var Ui = Base.extend( {
 		setTimeout( function()
 		{
 			notification6.show();
-		}, 25000 );
-		
-		setTimeout( function()
-		{
-			notification7.show();
-		}, 27000 );
-		
-		setTimeout( function()
-		{
-			notification8.show();
-		}, 29000 );
-		
-		setTimeout( function()
-		{
-			notification9.show();
-			Game.universe.player.setHealth( 67 );
-		}, 31000 );
-		
-		setTimeout( function()
-		{
+			
 			var waypoint = new Waypoint();
 			waypoint.setPosition( randomInt( -10000, 10000 ), randomInt( -10000, 10000 ) );
 			waypoint.draw( Game.universe.stage );
@@ -188,9 +157,7 @@ var Ui = Base.extend( {
 			that.waypoints.add( 'waypoint_3', waypoint );
 			that.log.addLine( 'Waypoint set', 'success' );
 			
-			notification10.show();
-		}, 38000 );
-		
+		}, 25000 );
 	},
 	update: function()
 	{

@@ -9,7 +9,7 @@ var StatBar = Base.extend( {
 	setValue: function( n )
 	{
 		this.value = n;
-		this.$bar.stop().animate( {
+		this.$bar.css( {
 			width: this.value + '%'
 		} );
 	}

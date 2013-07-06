@@ -32,6 +32,7 @@ var SolarSystem = Base.extend( {
 	},
 	update: function()
 	{
+		this.sun.update();
 		this.planets.updateAll();
 	}
 
