@@ -34,6 +34,7 @@ var Universe = Base.extend( {
 		{
 			var solar = new SolarSystem( randomInt( -20000, 20000 ), randomInt( -20000, 20000 ) );
 			solar.addPlanets( 15 );
+			solar.addMinerals( 150 );
 			this.solar_systems.add( 'solar_' + i, solar );
 		}
 	},
