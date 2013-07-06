@@ -6,12 +6,15 @@ var Notification = Base.extend( {
 	},
 	setText: function( text )
 	{
-		this.$container.text( text );
+		this.text = text;
+		this.$container.text( this.text );
 	},
 	show: function()
 	{
+		var that = this;
 		this.$container.fadeIn( function()
 		{
+			Game.ui.log.addLine( that.text, 'notification' );
 			$( this ).delay( 1000 ).fadeOut();
 		} );
 	}
