@@ -53,7 +53,7 @@ var Game = {
 		this.sounds = new SoundStorage();
 		
 		// Sound
-		var theme_sound = new Sound( 'sound/music/theme.mp3', 'audio/mpeg' );
+		var theme_sound = new Sound( 'sound/music/stringpad1.mp3', 'audio/mpeg' );
 		theme_sound.loop();
 		this.sounds.add( 'theme', theme_sound );
 		this.sounds.add( 'sidethruster', new Sound( 'sound/ship/sidethruster1.wav', 'audio/wav' ) );
