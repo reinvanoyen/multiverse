@@ -68,22 +68,25 @@ var Ui = Base.extend( {
 			}
 		} ) );
 		
+		this.actions.add( 'player', new Action( 'Player (H)', 'ui/icons/planet.png', 72, function()
+		{
+			Game.universe.camera.follow( Game.universe.player );
+		} ) );
+		
 		this.actions.add( 'random_planet', new Action( 'Random planet (R)', 'ui/icons/planet.png', 82, function()
 		{
-			if( Game.universe.camera.follow_object !== Game.universe.player )
-			{
-				Game.universe.camera.follow( Game.universe.player );
-			}
-			else
-			{
-				var planet = randomPlanet();
+			var planet = randomPlanet();
 			
-				Game.universe.camera.follow( planet );
-				var notification = new Notification();
-				notification.setText( 'Planet ' + planet.getName() );
-				notification.show();
-			}
-		} ) )
+			Game.universe.camera.follow( planet );
+			var notification = new Notification();
+			notification.setText( 'Planet ' + planet.getName() );
+			notification.show();
+		} ) );
+		
+		this.actions.add( 'mute_sound', new Action( 'Mute music', 'ui/icons/planet.png', 34, function()
+		{
+			Game.sounds.get( 'theme' ).mute();
+		} ) );
 		
 		// Create our actionbar
 		this.actionbar = new ActionBar( this.actions );
@@ -93,19 +96,16 @@ var Ui = Base.extend( {
 		notification.setText( 'Dear citizens,' );
 		
 		var notification2 = new Notification();
-		notification2.setText( 'Today I added waypoints' );
+		notification2.setText( 'Today I implemented waypoints' );
 		
 		var notification3 = new Notification();
 		notification3.setText( 'It\'s not finished yet' );
 		
 		var notification4 = new Notification();
-		notification4.setText( 'But is fun already :)' );
+		notification4.setText( 'But it\'s fun already :)' );
 		
 		var notification5 = new Notification();
 		notification5.setText( 'Here, let me set one at a random position' );
-		
-		var notification6 = new Notification();
-		notification6.setText( 'Added 2 more waypoints!' );
 		
 		setTimeout( function()
 		{
@@ -136,28 +136,9 @@ var Ui = Base.extend( {
 		{
 			var waypoint = new Waypoint();
 			waypoint.setPosition( randomInt( -10000, 10000 ), randomInt( -10000, 10000 ) );
-			waypoint.draw( Game.universe.stage );
 			that.waypoints.add( 'waypoint_1', waypoint );
 			that.log.addLine( 'Waypoint set', 'success' );
 		}, 14000 );
-		
-		setTimeout( function()
-		{
-			notification6.show();
-			
-			var waypoint = new Waypoint();
-			waypoint.setPosition( randomInt( -10000, 10000 ), randomInt( -10000, 10000 ) );
-			waypoint.draw( Game.universe.stage );
-			that.waypoints.add( 'waypoint_2', waypoint );
-			that.log.addLine( 'Waypoint set', 'success' );
-			
-			var waypoint = new Waypoint();
-			waypoint.setPosition( randomInt( -10000, 10000 ), randomInt( -10000, 10000 ) );
-			waypoint.draw( Game.universe.stage );
-			that.waypoints.add( 'waypoint_3', waypoint );
-			that.log.addLine( 'Waypoint set', 'success' );
-			
-		}, 25000 );
 	},
 	update: function()
 	{

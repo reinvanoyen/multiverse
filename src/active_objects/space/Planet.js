@@ -10,6 +10,12 @@ var Planet = OrbittingObject.extend( {
 	},
 	click: function( data )
 	{
+		// Game.universe.camera.follow( this );
+		
+		var waypoint = new Waypoint();
+		waypoint.linkToObject( this );
+		Game.ui.waypoints.add( this.getName(), waypoint );
+		
 		if( ! this.tooltip )
 		{
 			this.tooltip = new Tooltip();

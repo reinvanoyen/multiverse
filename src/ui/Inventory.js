@@ -4,7 +4,16 @@ var Inventory = Window.extend( {
 	{
 		this.base();
 		this.setTitle( 'Inventory' );
-		this.setContent( 'Moat, hier komen uw items' );
+		this.items = new Storage();
+	},
+	addItem: function( item )
+	{
+		this.items.add( 'item_' + this.items.length() + 1, item );
+		this.updateContent();
+	},
+	updateContent: function()
+	{
+		this.setContent( this.items.length() );
 	}
 
 } );

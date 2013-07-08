@@ -11,7 +11,7 @@ var Universe = Base.extend( {
 		
 		// Solar systems
 		this.solar_systems = new DrawableStorage();
-		this.addSolarSystems( 10 );
+		this.addSolarSystems( 20 );
 		
 		// Scrolling
 		this.bindScroll();
@@ -49,7 +49,7 @@ var Universe = Base.extend( {
 			}
 			else
 			{
-				that.camera.setZoom( Math.max( that.camera.zoom - 0.05, 0.02) );
+				that.camera.setZoom( Math.max( that.camera.zoom - 0.05, 0.01) );
 			}
 		} );
 	},
