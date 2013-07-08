@@ -19,6 +19,7 @@ var Game = {
 		this.input_manager = new InputManager();
 		this.universe = new Universe();
 		this.ui = new Ui();
+		this.sounds = new SoundStorage();
 		
 		this.loadSounds();
 		
@@ -27,6 +28,7 @@ var Game = {
 	start: function()
 	{
 		var that = this;
+		this.sounds.unmuteAll();
 		this.loopInterval = setInterval( function()
 		{
 			that.update();
@@ -37,6 +39,7 @@ var Game = {
 	stop: function()
 	{
 		this.state = 'paused';
+		this.sounds.muteAll();
 		clearInterval( this.loopInterval );
 	},
 	update: function()
@@ -50,8 +53,6 @@ var Game = {
 	},
 	loadSounds: function()
 	{
-		this.sounds = new SoundStorage();
-		
 		// Sound
 		var theme_sound = new Sound( 'sound/music/stringpad1.mp3', 'audio/mpeg' );
 		theme_sound.loop();

@@ -4,7 +4,14 @@ var MainMenu = Base.extend( {
 	{
 		this.is_open = true;
 		this.$container = $( '<div>' ).attr( 'id', 'main_menu' ).appendTo( $( 'body' ) );
-		Game.stop();
+		this.$item_list = $( '<ul>' ).attr( 'id', 'main_menu_items' ).appendTo( this.$container );
+	},
+	addItem: function( name, action )
+	{
+		var $button = $( '<li>' ).addClass( 'main_menu_button' ).text( name ).appendTo( this.$item_list ).click( function()
+		{
+			action();
+		} );
 	},
 	open: function()
 	{

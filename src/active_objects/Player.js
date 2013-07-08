@@ -4,7 +4,7 @@ var Player = Drawable.extend( {
 	{
 		this.base( 'textures/player.png' );
 		this.health = 100;
-		this.velocity = 0;
+		this.velocity = 5;
 	},
 	hurt: function( n )
 	{
@@ -40,7 +40,24 @@ var Player = Drawable.extend( {
 	},
 	moveBackward: function()
 	{
-		this.velocity = Math.max( this.velocity - 0.2, -5 );
+		this.velocity = Math.max( this.velocity - 0.1, -5 );
+	},
+	turnRight: function( move_forward )
+	{
+		this.setRotation( this.sprite.rotation + 0.01 );
+		if( move_forward )
+		{
+			this.easeVelocityTo( 4 );
+		}
+	},
+	turnLeft: function( move_forward )
+	{
+		this.setRotation( this.sprite.rotation - 0.01 );
+		if( move_forward )
+		{
+			this.easeVelocityTo( 4 );
+			console.log( this.velocity );
+		}
 	},
 	move: function()
 	{
@@ -48,17 +65,19 @@ var Player = Drawable.extend( {
 		var y = this.position.y + this.velocity * Math.sin( ( this.sprite.rotation - 90 * ( Math.PI/180 ) ) );
 		this.setPosition( x, y );
 	},
+	easeVelocityTo: function( n )
+	{
+		if( this.velocity > n )
+		{
+			this.velocity = Math.max( this.velocity - 0.03, n );
+		}
+		else if( this.velocity < n )
+		{
+			this.velocity = Math.min( this.velocity + 0.03, n );
+		}
+	},
 	update: function()
 	{
-		if( this.velocity > 0 )
-		{
-			this.velocity = Math.max( this.velocity - 0.03, 0 );
-		}
-		else if( this.velocity < 0 )
-		{
-			this.velocity = Math.min( this.velocity + 0.03, 0 );
-		}
-		
 		if( ! this.isDead() )
 		{
 			if(
@@ -71,10 +90,13 @@ var Player = Drawable.extend( {
 				if( Game.input_manager.is_key_down( 37 ) )
 				{
 					// Left
-					this.setRotation( this.sprite.rotation - 0.03 );
 					if( ! Game.input_manager.is_key_down( 40 ) && ! Game.input_manager.is_key_down( 38 ) && ! Game.input_manager.is_key_down( 39 ) )
 					{
-						this.moveForward();
+						this.turnLeft( true );
+					}
+					else
+					{
+						this.turnLeft( false );
 					}
 					Game.sounds.get( 'booster' ).play();
 					Game.sounds.get( 'sidebooster' ).play();
@@ -82,10 +104,13 @@ var Player = Drawable.extend( {
 				if( Game.input_manager.is_key_down( 39 ) )
 				{
 					// Right
-					this.setRotation( this.sprite.rotation + 0.03 );
 					if( ! Game.input_manager.is_key_down( 40 ) && ! Game.input_manager.is_key_down( 38 ) && ! Game.input_manager.is_key_down( 37 ) )
 					{
-						this.moveForward();
+						this.turnRight( true );
+					}
+					else
+					{
+						this.turnRight( false );
 					}
 					Game.sounds.get( 'booster' ).play();
 					Game.sounds.get( 'sidebooster' ).play();
@@ -107,6 +132,7 @@ var Player = Drawable.extend( {
 			}
 			else
 			{
+				this.easeVelocityTo( 0 );
 				Game.sounds.get( 'booster' ).stop();
 			}
 		}

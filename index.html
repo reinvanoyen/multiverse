@@ -158,12 +158,30 @@
 			background-position: center center;
 		}
 		
+		#main_menu_items
+		{
+			list-style: none;
+			position: absolute;
+			bottom: 20%;
+			right: 25%;
+		}
+		
+		.main_menu_button
+		{
+			font-size: 20px;
+			text-transform: uppercase;
+			line-height: 30px;
+			color: white;
+		}
+		
 	</style>
 </head>
 <body>
 	<script src="3p/pixi.js"></script>
 	<script src="3p/base.js"></script>
 	<script src="3p/jquery-1.10.0.min.js"></script>
+	
+	<script src="src/Main.js"></script>
 	
 	<script src="src/Utils.js"></script>
 	<script src="src/Point.js"></script>
@@ -208,7 +226,7 @@
 	<script>
 		$( document ).ready( function()
 		{
-			Game.create();
+			Main.create();
 		} );
 	</script>
 </body>
