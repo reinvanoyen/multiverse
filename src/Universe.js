@@ -3,7 +3,6 @@ var Universe = Base.extend( {
 	constructor: function()
 	{
 		this.stage = new PIXI.DisplayObjectContainer();
-		
 		this.age = 0;
 		
 		this.camera = new Camera( this.stage );

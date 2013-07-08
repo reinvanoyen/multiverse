@@ -5,6 +5,9 @@ var Player = Drawable.extend( {
 		this.base( 'textures/player.png' );
 		this.health = 100;
 		this.velocity = 5;
+		
+		this.exhaust_flume = new ParticleEmitter();
+		this.exhaust_flume.addParticles( 30 );
 	},
 	hurt: function( n )
 	{
@@ -34,6 +37,11 @@ var Player = Drawable.extend( {
 	{
 		return ( this.health <= 0 );
 	},
+	setRotation: function( radian )
+	{
+		this.sprite.rotation = radian;
+		this.exhaust_flume.setDirection( radian );
+	},
 	moveForward: function()
 	{
 		this.velocity = Math.min( this.velocity + 0.3, 13 );
@@ -56,7 +64,6 @@ var Player = Drawable.extend( {
 		if( move_forward )
 		{
 			this.easeVelocityTo( 4 );
-			console.log( this.velocity );
 		}
 	},
 	move: function()
@@ -78,6 +85,9 @@ var Player = Drawable.extend( {
 	},
 	update: function()
 	{
+		this.exhaust_flume.setPosition( this.position.x, this.position.y );
+		this.exhaust_flume.update();
+		
 		if( ! this.isDead() )
 		{
 			if(
@@ -87,6 +97,8 @@ var Player = Drawable.extend( {
 				|| Game.input_manager.is_key_down( 40 )
 			)
 			{
+				this.exhaust_flume.start();
+							
 				if( Game.input_manager.is_key_down( 37 ) )
 				{
 					// Left
@@ -134,10 +146,16 @@ var Player = Drawable.extend( {
 			{
 				this.easeVelocityTo( 0 );
 				Game.sounds.get( 'booster' ).stop();
+				this.exhaust_flume.stop();
 			}
 		}
 		
 		this.move();
+	},
+	draw: function( stage )
+	{
+		stage.addChild( this.sprite );
+		this.exhaust_flume.draw( stage );
 	}
 
 } );
