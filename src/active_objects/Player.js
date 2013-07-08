@@ -1,9 +1,10 @@
-var Player = PhysicsObject.extend( {
+var Player = Drawable.extend( {
 
 	constructor: function()
 	{
 		this.base( 'textures/player.png' );
 		this.health = 100;
+		this.velocity = 0;
 	},
 	hurt: function( n )
 	{
@@ -17,7 +18,7 @@ var Player = PhysicsObject.extend( {
 	},
 	setHealth: function( n )
 	{
-		if( this.health <= 0 )
+		if( this.isDead() )
 		{
 			Game.ui.log.addLine( 'You are dead', 'error' );
 			Game.ui.notification.setText( 'You are dead' );
@@ -29,39 +30,36 @@ var Player = PhysicsObject.extend( {
 			Game.ui.healthbar.setValue( this.health );
 		}
 	},
+	isDead: function()
+	{
+		return ( this.health <= 0 );
+	},
 	moveForward: function()
 	{
-		var x = this.position.x + 10 * Math.cos( ( this.sprite.rotation - 90 * ( Math.PI/180 ) ) );
-		var y = this.position.y + 10 * Math.sin( ( this.sprite.rotation - 90 * ( Math.PI/180 ) ) );
-		this.setPosition( x, y );
+		this.velocity = Math.min( this.velocity + 0.3, 10 );
 	},
 	moveBackward: function()
 	{
-		var x = this.position.x + 10 * Math.cos( ( this.sprite.rotation + 90 * ( Math.PI/180 ) ) );
-		var y = this.position.y + 10 * Math.sin( ( this.sprite.rotation + 90 * ( Math.PI/180 ) ) );
+		this.velocity = Math.max( this.velocity - 0.3, -5 );
+	},
+	move: function()
+	{
+		var x = this.position.x + this.velocity * Math.cos( ( this.sprite.rotation - 90 * ( Math.PI/180 ) ) );
+		var y = this.position.y + this.velocity * Math.sin( ( this.sprite.rotation - 90 * ( Math.PI/180 ) ) );
 		this.setPosition( x, y );
 	},
 	update: function()
 	{
-		if( this.velocity_x < 0 )
+		if( this.velocity > 0 )
 		{
-			this.velocity_x = Math.min( this.velocity_x + 0.05, 0 );
+			this.velocity = Math.max( this.velocity - 0.05, 0 );
 		}
-		else
+		else if( this.velocity < 0 )
 		{
-			this.velocity_x = Math.max( this.velocity_x - 0.05, 0 );
-		}
-		
-		if( this.velocity_y < 0 )
-		{
-			this.velocity_y = Math.min( this.velocity_y + 0.05, 0 );
-		}
-		else
-		{
-			this.velocity_y = Math.max( this.velocity_y - 0.05, 0 );
+			this.velocity = Math.min( this.velocity + 0.05, 0 );
 		}
 		
-		if( this.health > 0 )
+		if( ! this.isDead() )
 		{
 			if(
 				Game.input_manager.is_key_down( 37 )
@@ -74,7 +72,7 @@ var Player = PhysicsObject.extend( {
 				{
 					// Left
 					this.setRotation( this.sprite.rotation - 0.05 );
-					if( ! Game.input_manager.is_key_down( 40 ) && ! Game.input_manager.is_key_down( 38 ) )
+					if( ! Game.input_manager.is_key_down( 40 ) && ! Game.input_manager.is_key_down( 38 ) && ! Game.input_manager.is_key_down( 39 ) )
 					{
 						this.moveForward();
 					}
@@ -84,7 +82,7 @@ var Player = PhysicsObject.extend( {
 				{
 					// Right
 					this.setRotation( this.sprite.rotation + 0.05 );
-					if( ! Game.input_manager.is_key_down( 40 ) && ! Game.input_manager.is_key_down( 38 ) )
+					if( ! Game.input_manager.is_key_down( 40 ) && ! Game.input_manager.is_key_down( 38 ) && ! Game.input_manager.is_key_down( 37 ) )
 					{
 						this.moveForward();
 					}
@@ -110,9 +108,8 @@ var Player = PhysicsObject.extend( {
 				Game.sounds.get( 'booster' ).stop();
 			}
 		}
-			
-		//this.sprite.rotation = this.velocity_x / 10;
-		//this.move();
+		
+		this.move();
 	}
 
 } );

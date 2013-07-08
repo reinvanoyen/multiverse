@@ -93,52 +93,8 @@ var Ui = Base.extend( {
 		
 		// Do some temporary shit
 		var notification = new Notification();
-		notification.setText( 'Dear citizens,' );
-		
-		var notification2 = new Notification();
-		notification2.setText( 'Today I implemented waypoints' );
-		
-		var notification3 = new Notification();
-		notification3.setText( 'It\'s not finished yet' );
-		
-		var notification4 = new Notification();
-		notification4.setText( 'But it\'s fun already :)' );
-		
-		var notification5 = new Notification();
-		notification5.setText( 'Here, let me set one at a random position' );
-		
-		setTimeout( function()
-		{
-			notification.show();
-		}, 1000 );
-		
-		setTimeout( function()
-		{
-			notification2.show();
-		}, 3000 );
-		
-		setTimeout( function()
-		{
-			notification3.show();
-		}, 5000 );
-		
-		setTimeout( function()
-		{
-			notification4.show();
-		}, 8000 );
-		
-		setTimeout( function()
-		{
-			notification5.show();
-		}, 11000 );
-		
-		setTimeout( function()
-		{
-			var waypoint = new Waypoint();
-			waypoint.setPosition( randomInt( -10000, 10000 ), randomInt( -10000, 10000 ) );
-			that.waypoints.add( 'waypoint_1', waypoint );
-			that.log.addLine( 'Waypoint set', 'success' );
-		}, 14000 );
+		notification.setText( 'Start exploring motherfucker!' );
+		notification.show();
 	},
 	update: function()
 	{
