@@ -2,7 +2,7 @@ var Top = Base.extend( {
 
 	constructor: function()
 	{
-		this.$container = $( '<div>' ).attr( 'id', 'hud' ).appendTo( $( 'body' ) );
+		this.$container = $( '<div>' ).attr( 'id', 'top' ).appendTo( $( 'body' ) );
 		this.$age = $( '<div>' ).attr( 'id', 'age' ).appendTo( this.$container );
 	},
 	updateAge: function( age )
