@@ -14,6 +14,8 @@ var Ui = Base.extend( {
 		this.healthbar = new StatBar();
 		this.healthbar.$container.appendTo( $( 'body' ) );
 		
+		this.mainmenu = new MainMenu();
+		
 		this.notification = new Notification();
 		
 		this.log = new Log();
@@ -22,6 +24,18 @@ var Ui = Base.extend( {
 		var that = this;
 		
 		// Assign actions
+		this.actions.add( 'main_menu', new Action( 'Main menu (ESC)', 'ui/icons/inventory.png', 27, function()
+		{
+			if( that.mainmenu.is_open )
+			{
+				that.mainmenu.close();
+			}
+			else
+			{
+				that.mainmenu.open();
+			}
+		} ) );
+		
 		this.actions.add( 'inventory', new Action( 'Inventory (I)', 'ui/icons/inventory.png', 73, function()
 		{
 			if( that.inventory.is_open )

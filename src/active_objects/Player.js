@@ -77,6 +77,7 @@ var Player = Drawable.extend( {
 						this.moveForward();
 					}
 					Game.sounds.get( 'booster' ).play();
+					Game.sounds.get( 'sidebooster' ).play();
 				}
 				if( Game.input_manager.is_key_down( 39 ) )
 				{
@@ -87,6 +88,7 @@ var Player = Drawable.extend( {
 						this.moveForward();
 					}
 					Game.sounds.get( 'booster' ).play();
+					Game.sounds.get( 'sidebooster' ).play();
 				}
 				
 				if( Game.input_manager.is_key_down( 40 ) )

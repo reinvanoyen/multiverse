@@ -10,8 +10,6 @@ var Planet = OrbittingObject.extend( {
 	},
 	click: function( data )
 	{
-		// Game.universe.camera.follow( this );
-		
 		var waypoint = new Waypoint();
 		waypoint.linkToObject( this );
 		Game.ui.waypoints.add( this.getName(), waypoint );
@@ -54,14 +52,6 @@ var Planet = OrbittingObject.extend( {
 	},
 	interactWithPlayer: function()
 	{
-		var distance_to_player = Game.universe.player.position.getDistance( this.position );
-		if( distance_to_player < ( this.sprite.width ) / 1.5 )
-		{
-			Game.universe.player.velocity_x = -Game.universe.player.velocity_x;
-			Game.universe.player.velocity_y = -Game.universe.player.velocity_y;
-			
-			Game.universe.player.hurt( 5 );
-		}
 	}
 	
 } );
