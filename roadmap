@@ -2,7 +2,7 @@ roadmap
 
 
 8 july 2013:
-	-revision: fly mechanic
+	-revision: fly mechanic : velocity while steering is to fast, using boost button isnt nesessary because of velocity attained by steering alone is to high. 		 solution: less velocity while steering and increase turning circle ?
 
 To do:
 
@@ -20,7 +20,8 @@ Wishlist:
 	-martijn zijn planeten
 	-wolken/puin parallax lagen
 	-battlerose rond uw schip met waypoint/navigatie data
+	-passieve AI
 
 
 Polish:
-	-sidebooster.audio: left/right channel output
+	-sidebooster.audio: left booster -> left speaker, right booster -> right speaker
