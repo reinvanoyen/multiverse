@@ -71,7 +71,7 @@ var Player = Drawable.extend( {
 				if( Game.input_manager.is_key_down( 37 ) )
 				{
 					// Left
-					this.setRotation( this.sprite.rotation - 0.05 );
+					this.setRotation( this.sprite.rotation - 0.03 );
 					if( ! Game.input_manager.is_key_down( 40 ) && ! Game.input_manager.is_key_down( 38 ) && ! Game.input_manager.is_key_down( 39 ) )
 					{
 						this.moveForward();
@@ -81,7 +81,7 @@ var Player = Drawable.extend( {
 				if( Game.input_manager.is_key_down( 39 ) )
 				{
 					// Right
-					this.setRotation( this.sprite.rotation + 0.05 );
+					this.setRotation( this.sprite.rotation + 0.03 );
 					if( ! Game.input_manager.is_key_down( 40 ) && ! Game.input_manager.is_key_down( 38 ) && ! Game.input_manager.is_key_down( 37 ) )
 					{
 						this.moveForward();
