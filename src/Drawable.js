@@ -10,6 +10,8 @@ var Drawable = Base.extend( {
 		this.sprite.position.x = 0;
 		this.sprite.position.y = 0;
 		
+		this.setRotation( 0 );
+		
 		this.position = new Point( 0, 0 );
 		
 		this.sprite.setInteractive( true );
@@ -26,6 +28,10 @@ var Drawable = Base.extend( {
 		this.sprite.position.y = y;
 		this.position.x = x;
 		this.position.y = y;
+	},
+	setRotation: function( radian )
+	{
+		this.sprite.rotation = radian;
 	},
 	draw: function( stage )
 	{

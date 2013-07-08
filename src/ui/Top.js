@@ -7,7 +7,7 @@ var Top = Base.extend( {
 	},
 	updateAge: function( age )
 	{
-		var age = Math.ceil( age / 10000 );
+		var age = Math.ceil( age / 15000 );
 		this.$age.text( 'Year ' + age );
 	}
 

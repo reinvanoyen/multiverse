@@ -29,9 +29,20 @@ var Player = PhysicsObject.extend( {
 			Game.ui.healthbar.setValue( this.health );
 		}
 	},
+	moveForward: function()
+	{
+		var x = this.position.x + 10 * Math.cos( ( this.sprite.rotation - 90 * ( Math.PI/180 ) ) );
+		var y = this.position.y + 10 * Math.sin( ( this.sprite.rotation - 90 * ( Math.PI/180 ) ) );
+		this.setPosition( x, y );
+	},
+	moveBackward: function()
+	{
+		var x = this.position.x + 10 * Math.cos( ( this.sprite.rotation + 90 * ( Math.PI/180 ) ) );
+		var y = this.position.y + 10 * Math.sin( ( this.sprite.rotation + 90 * ( Math.PI/180 ) ) );
+		this.setPosition( x, y );
+	},
 	update: function()
 	{
-		
 		if( this.velocity_x < 0 )
 		{
 			this.velocity_x = Math.min( this.velocity_x + 0.05, 0 );
@@ -61,26 +72,36 @@ var Player = PhysicsObject.extend( {
 			{
 				if( Game.input_manager.is_key_down( 37 ) )
 				{
-					this.velocity_y = Math.max( this.velocity_y - 0.1, -15 );
-					this.velocity_x = Math.max( this.velocity_x - 0.2, -15 );
+					// Left
+					this.setRotation( this.sprite.rotation - 0.05 );
+					if( ! Game.input_manager.is_key_down( 40 ) && ! Game.input_manager.is_key_down( 38 ) )
+					{
+						this.moveForward();
+					}
 					Game.sounds.get( 'booster' ).play();
 				}
 				if( Game.input_manager.is_key_down( 39 ) )
 				{
-					this.velocity_y = Math.max( this.velocity_y - 0.1, -15 );
-					this.velocity_x = Math.min( this.velocity_x + 0.2, 15 );
+					// Right
+					this.setRotation( this.sprite.rotation + 0.05 );
+					if( ! Game.input_manager.is_key_down( 40 ) && ! Game.input_manager.is_key_down( 38 ) )
+					{
+						this.moveForward();
+					}
 					Game.sounds.get( 'booster' ).play();
 				}
 				
 				if( Game.input_manager.is_key_down( 40 ) )
 				{
-					this.velocity_y = Math.min( this.velocity_y + 0.2, 15 );
+					// Down
+					this.moveBackward();
 					Game.sounds.get( 'booster' ).play();
 				}
 				
 				if( Game.input_manager.is_key_down( 38 ) )
 				{
-					this.velocity_y = Math.max( this.velocity_y - 0.3, -15 );
+					// Up
+					this.moveForward();
 					Game.sounds.get( 'booster' ).play();
 				}
 			}
@@ -90,9 +111,8 @@ var Player = PhysicsObject.extend( {
 			}
 		}
 			
-		this.sprite.rotation = this.velocity_x / 10;
-		
-		this.move();
+		//this.sprite.rotation = this.velocity_x / 10;
+		//this.move();
 	}
 
 } );

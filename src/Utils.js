@@ -70,7 +70,9 @@ function randomPlanetSkin()
 		'textures/jupiter.png',
 		'textures/venus.png',
 		'textures/pluto.png',
-		'textures/earth.png'
+		'textures/earth.png',
+		'textures/red.png',
+		'textures/green.png'
 	];
 	
 	return planet_skins[ randomInt( 0, planet_skins.length - 1 ) ];

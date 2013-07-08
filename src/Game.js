@@ -60,6 +60,7 @@ var Game = {
 		this.sounds.add( 'booster', new Sound( 'sound/ship/booster1.wav', 'audio/wav' ) );
 		this.sounds.add( 'action', new Sound( 'sound/ui/action.mp3', 'audio/mpeg' ) );
 		this.sounds.add( 'mineral_pickup', new Sound( 'sound/ship/mineral_pickup.mp3', 'audio/mpeg' ) );
+		this.sounds.add( 'waypoint_set', new Sound( 'sound/ui/waypoint_set.mp3', 'audio/mpeg' ) );
 		this.sounds.get( 'theme' ).play();
 	}
 };

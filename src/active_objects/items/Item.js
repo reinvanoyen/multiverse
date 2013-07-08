@@ -9,6 +9,7 @@ var Item = Drawable.extend( {
 	addToInventory: function()
 	{
 		this.is_in_inventory = true;
+		Game.ui.inventory.addItem( this );
 		Game.ui.log.addLine( 'Picked up ' + this.name, 'success' );
 	}
 
