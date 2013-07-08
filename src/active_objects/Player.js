@@ -36,11 +36,11 @@ var Player = Drawable.extend( {
 	},
 	moveForward: function()
 	{
-		this.velocity = Math.min( this.velocity + 0.3, 10 );
+		this.velocity = Math.min( this.velocity + 0.3, 13 );
 	},
 	moveBackward: function()
 	{
-		this.velocity = Math.max( this.velocity - 0.3, -5 );
+		this.velocity = Math.max( this.velocity - 0.2, -5 );
 	},
 	move: function()
 	{
@@ -52,11 +52,11 @@ var Player = Drawable.extend( {
 	{
 		if( this.velocity > 0 )
 		{
-			this.velocity = Math.max( this.velocity - 0.05, 0 );
+			this.velocity = Math.max( this.velocity - 0.03, 0 );
 		}
 		else if( this.velocity < 0 )
 		{
-			this.velocity = Math.min( this.velocity + 0.05, 0 );
+			this.velocity = Math.min( this.velocity + 0.03, 0 );
 		}
 		
 		if( ! this.isDead() )
