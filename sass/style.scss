@@ -1,0 +1,15 @@
+$primary_color: #111;
+
+// Import general styling
+@import "compass/reset";
+@import "main";
+
+// Import UI styling
+@import "ui/main_menu";
+@import "ui/log";
+@import "ui/top";
+@import "ui/window";
+@import "ui/tooltip";
+@import "ui/notification";
+@import "ui/actionbar";
+@import "ui/statbar";
