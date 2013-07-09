@@ -6,6 +6,8 @@ var Player = Drawable.extend( {
 		this.health = 100;
 		this.velocity = 0;
 		this.exhaust_flume = new ExhaustFlume();
+		this.exhaust_flame = new ExhaustFlame();
+		this.exhaust_flame.start();
 	},
 	hurt: function( n )
 	{
@@ -39,6 +41,7 @@ var Player = Drawable.extend( {
 	{
 		this.sprite.rotation = radian;
 		this.exhaust_flume.direction = radian - Math.PI;
+		this.exhaust_flame.direction = radian - Math.PI;
 	},
 	moveForward: function()
 	{
@@ -71,6 +74,7 @@ var Player = Drawable.extend( {
 		var x = this.position.x + ( this.velocity * Game.delta ) * Math.cos( ( this.sprite.rotation ) );
 		var y = this.position.y + ( this.velocity * Game.delta ) * Math.sin( ( this.sprite.rotation ) );
 		this.exhaust_flume.setPosition( x, y );
+		this.exhaust_flame.setPosition( x, y );
 		this.setPosition( x, y );
 	},
 	easeVelocityTo: function( n )
@@ -142,10 +146,12 @@ var Player = Drawable.extend( {
 		
 		this.move();
 		this.exhaust_flume.update();
+		this.exhaust_flame.update();
 	},
 	draw: function( stage )
 	{
 		this.exhaust_flume.draw( stage );
+		this.exhaust_flame.draw( stage );
 		stage.addChild( this.sprite );
 	}
 

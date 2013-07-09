@@ -15,22 +15,6 @@ var Universe = Base.extend( {
 		// Follow player
 		this.camera.follow( this.player );
 		
-		// Fire test
-		this.fire = new Fire();
-		this.fire.setPosition( 100, 100 );
-		this.fire.start();
-		this.fire.draw( this.stage );
-		
-		this.cloud = new Cloud();
-		this.cloud.setPosition( -100, -100 );
-		this.cloud.start();
-		this.cloud.draw( this.stage );
-		
-		this.spark = new Spark();
-		this.spark.setPosition( -100, 100 );
-		this.spark.start();
-		this.spark.draw( this.stage );
-		
 		// Draw
 		this.player.draw( this.stage );
 		this.solar_systems.drawAll( this.stage );
@@ -49,9 +33,6 @@ var Universe = Base.extend( {
 	update: function()
 	{
 		this.age++;
-		this.fire.update();
-		this.cloud.update();
-		this.spark.update();
 		this.solar_systems.updateAll();
 		this.player.update();
 		this.camera.update();

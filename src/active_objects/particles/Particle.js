@@ -1,6 +1,6 @@
 var Particle = Drawable.extend( {
 
-	constructor: function( texture_path, particle_emitter, lifetime, velocity )
+	constructor: function( texture_path, particle_emitter, lifetime, velocity, scale )
 	{
 		this.base( texture_path );
 		
@@ -9,6 +9,8 @@ var Particle = Drawable.extend( {
 		this.lifetime = lifetime;
 		this.lifetime_copy = lifetime;
 		this.velocity = velocity;
+		this.sprite.scale.x = scale;
+		this.sprite.scale.y = scale;
 		this.sprite.visible = false;
 	},
 	update: function()
@@ -35,6 +37,7 @@ var Particle = Drawable.extend( {
 		this.updateDirection();
 		this.lifetime = this.lifetime_copy;
 		this.sprite.alpha = 1;
+		this.sprite.rotation = this.direction;
 		this.setPosition( this.particle_emitter.position.x, this.particle_emitter.position.y );
 	},
 	move: function()

@@ -17,6 +17,9 @@ var ParticleEmitter = Base.extend( {
 		this.min_velocity = 200;
 		this.max_velocity = 1000;
 		
+		this.min_scale = 1;
+		this.max_scale = 1;
+		
 		this.particle_texture = 'textures/particles/smoke.png';
 	},
 	setPosition: function( x, y )
@@ -28,7 +31,7 @@ var ParticleEmitter = Base.extend( {
 	{
 		for( var i = 0; i < n; i++ )
 		{
-			var particle = new Particle( this.particle_texture, this, randomInt( this.min_lifetime, this.max_lifetime ), randomInt( this.min_velocity, this.max_velocity ) );
+			var particle = new Particle( this.particle_texture, this, randomInt( this.min_lifetime, this.max_lifetime ), randomInt( this.min_velocity, this.max_velocity ), randomFloat( this.min_scale, this.max_scale ) );
 			this.particles.add( 'particle_' + i, particle );
 		}
 	},
