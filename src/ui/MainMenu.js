@@ -17,12 +17,10 @@ var MainMenu = Base.extend( {
 	{
 		this.$container.show();
 		this.is_open = true;
-		Game.stop();
 	},
 	close: function()
 	{
 		this.$container.hide();
 		this.is_open = false;
-		Game.start();
 	}
 } );

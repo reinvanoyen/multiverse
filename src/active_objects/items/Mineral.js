@@ -8,6 +8,8 @@ var Mineral = Item.extend( {
 	},
 	update: function()
 	{
+		this.frustum();
+		
 		if( ! this.is_in_inventory )
 		{
 			var distance_to_player = Game.universe.player.position.getDistance( this.position );

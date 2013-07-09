@@ -1,40 +1,48 @@
 var Game = {
 	
-	settings:
-	{
-		fps: 60
-	},
-	create: function()
+	create: function( callback )
 	{
 		this.state = 'initialising';
-		
-		$( 'body' ).attr( 'oncontextmenu', 'return false;' );
 		
 		this.width = window.innerWidth;
 		this.height = window.innerHeight;
 		
-		this.stage = new PIXI.Stage( 0x071621, true );
+		this.stage = new PIXI.Stage( 0x071621 );
 		this.renderer = PIXI.autoDetectRenderer( this.width, this.height );
 		
+		// Delta time
+		this.delta = 0;
+		
+		// Create our needed objects
 		this.input_manager = new InputManager();
-		this.universe = new Universe();
 		this.ui = new Ui();
 		this.sounds = new SoundStorage();
+		this.universe = new Universe();
 		
 		this.loadSounds();
 		
+		// Append our view to the body
 		document.body.appendChild( this.renderer.view );
+		
+		// Call callback
+		callback();
 	},
 	start: function()
 	{
 		var that = this;
+		
 		this.sounds.unmuteAll();
+		this.state = 'playing';
+
+		var end_time = Date.now();
+		
 		this.loopInterval = setInterval( function()
 		{
+			var start_time = Date.now();
+			that.delta = ( start_time - end_time ) / 1000;
 			that.update();
-			that.draw();
-		}, 1000 / this.settings.fps );
-		this.state = 'playing';
+			end_time = start_time;
+		}, 1 );
 	},
 	stop: function()
 	{
@@ -44,11 +52,11 @@ var Game = {
 	},
 	update: function()
 	{
+		// Update objects
 		this.universe.update();
 		this.ui.update();
-	},
-	draw: function()
-	{
+		
+		// Render stage
 		this.renderer.render( this.stage );
 	},
 	loadSounds: function()

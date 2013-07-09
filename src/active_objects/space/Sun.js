@@ -8,6 +8,7 @@ var Sun = Drawable.extend( {
 	},
 	update: function()
 	{
+		this.frustum();
 		var distance_to_player = Game.universe.player.position.getDistance( this.position );
 		if( distance_to_player < ( this.sprite.width / 1.7 ) )
 		{

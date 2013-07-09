@@ -13,12 +13,6 @@ var Drawable = Base.extend( {
 		this.position = new Point( 0, 0 );
 		
 		this.sprite.setInteractive( true );
-		
-		var that = this;
-		this.sprite.click = function( data )
-		{
-			that.click( data );
-		}
 	},
 	setPosition: function( x, y )
 	{
@@ -35,15 +29,23 @@ var Drawable = Base.extend( {
 	{
 		stage.addChild( this.sprite );
 	},
-	click: function( data )
-	{
-	},
 	getWindowPosition: function()
 	{
 		var x = Game.universe.stage.position.x + this.sprite.position.x;
 		var y = Game.universe.stage.position.y + this.sprite.position.y;
 		
 		return new PIXI.Point( x, y )
+	},
+	frustum: function()
+	{
+		if( Game.universe.camera.center.getDistance( this.position ) > 2000 )
+		{
+			this.sprite.visible = false;
+		}
+		else
+		{
+			this.sprite.visible = true;
+		}
 	}
 
 } );

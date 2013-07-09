@@ -3,6 +3,16 @@ function randomInt( min, max )
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function randomFloat( min, max, precision )
+{
+	if( typeof( precision ) === 'undefined' )
+	{
+		var precision = 2;
+	}
+	return parseFloat( Math.min( min + ( Math.random() * ( max - min ) ), max).toFixed( precision ) );
+}
+
+
 function randomPlanetName()
 {
 	var start_syllables = [

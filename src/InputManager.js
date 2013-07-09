@@ -1,5 +1,6 @@
 var InputManager = Base.extend( {
 	
+	_keys_down: {},
 	constructor: function()
 	{
 		var that = this;
@@ -12,7 +13,6 @@ var InputManager = Base.extend( {
 			that._keys_down[e.which] = false;
 		} );
 	},
-	_keys_down: {},
 	is_key_down: function( key )
 	{
 		return !!this._keys_down[key];

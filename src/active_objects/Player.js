@@ -4,10 +4,8 @@ var Player = Drawable.extend( {
 	{
 		this.base( 'textures/player.png' );
 		this.health = 100;
-		this.velocity = 5;
-		
-		this.exhaust_flume = new ParticleEmitter();
-		this.exhaust_flume.addParticles( 30 );
+		this.velocity = 0;
+		this.exhaust_flume = new ExhaustFlume();
 	},
 	hurt: function( n )
 	{
@@ -40,54 +38,54 @@ var Player = Drawable.extend( {
 	setRotation: function( radian )
 	{
 		this.sprite.rotation = radian;
-		this.exhaust_flume.setDirection( radian );
+		this.exhaust_flume.direction = radian - Math.PI;
 	},
 	moveForward: function()
 	{
-		this.velocity = Math.min( this.velocity + 0.3, 13 );
+		this.velocity = Math.min( this.velocity + 20, 1000 );
+		this.exhaust_flume.start();
+		Game.sounds.get( 'booster' ).play();
 	},
 	moveBackward: function()
 	{
-		this.velocity = Math.max( this.velocity - 0.1, -5 );
+		this.velocity = Math.max( this.velocity - 10, -500 );
 	},
 	turnRight: function( move_forward )
 	{
-		this.setRotation( this.sprite.rotation + 0.01 );
+		this.setRotation( this.sprite.rotation + 1 * Game.delta );
 		if( move_forward )
 		{
-			this.easeVelocityTo( 4 );
+			this.easeVelocityTo( 500 );
 		}
 	},
 	turnLeft: function( move_forward )
 	{
-		this.setRotation( this.sprite.rotation - 0.01 );
+		this.setRotation( this.sprite.rotation - 1 * Game.delta );
 		if( move_forward )
 		{
-			this.easeVelocityTo( 4 );
+			this.easeVelocityTo( 500 );
 		}
 	},
 	move: function()
 	{
-		var x = this.position.x + this.velocity * Math.cos( ( this.sprite.rotation - 90 * ( Math.PI/180 ) ) );
-		var y = this.position.y + this.velocity * Math.sin( ( this.sprite.rotation - 90 * ( Math.PI/180 ) ) );
+		var x = this.position.x + ( this.velocity * Game.delta ) * Math.cos( ( this.sprite.rotation ) );
+		var y = this.position.y + ( this.velocity * Game.delta ) * Math.sin( ( this.sprite.rotation ) );
+		this.exhaust_flume.setPosition( x, y );
 		this.setPosition( x, y );
 	},
 	easeVelocityTo: function( n )
 	{
 		if( this.velocity > n )
 		{
-			this.velocity = Math.max( this.velocity - 0.03, n );
+			this.velocity = Math.max( this.velocity - 5, n );
 		}
 		else if( this.velocity < n )
 		{
-			this.velocity = Math.min( this.velocity + 0.03, n );
+			this.velocity = Math.min( this.velocity + 5, n );
 		}
 	},
 	update: function()
 	{
-		this.exhaust_flume.setPosition( this.position.x, this.position.y );
-		this.exhaust_flume.update();
-		
 		if( ! this.isDead() )
 		{
 			if(
@@ -97,8 +95,6 @@ var Player = Drawable.extend( {
 				|| Game.input_manager.is_key_down( 40 )
 			)
 			{
-				this.exhaust_flume.start();
-							
 				if( Game.input_manager.is_key_down( 37 ) )
 				{
 					// Left
@@ -110,8 +106,6 @@ var Player = Drawable.extend( {
 					{
 						this.turnLeft( false );
 					}
-					Game.sounds.get( 'booster' ).play();
-					Game.sounds.get( 'sidebooster' ).play();
 				}
 				if( Game.input_manager.is_key_down( 39 ) )
 				{
@@ -124,38 +118,35 @@ var Player = Drawable.extend( {
 					{
 						this.turnRight( false );
 					}
-					Game.sounds.get( 'booster' ).play();
-					Game.sounds.get( 'sidebooster' ).play();
 				}
 				
 				if( Game.input_manager.is_key_down( 40 ) )
 				{
 					// Down
 					this.moveBackward();
-					Game.sounds.get( 'booster' ).play();
 				}
 				
 				if( Game.input_manager.is_key_down( 38 ) )
 				{
 					// Up
 					this.moveForward();
-					Game.sounds.get( 'booster' ).play();
 				}
 			}
 			else
 			{
+				this.exhaust_flume.stop();
 				this.easeVelocityTo( 0 );
 				Game.sounds.get( 'booster' ).stop();
-				this.exhaust_flume.stop();
 			}
 		}
 		
 		this.move();
+		this.exhaust_flume.update();
 	},
 	draw: function( stage )
 	{
-		stage.addChild( this.sprite );
 		this.exhaust_flume.draw( stage );
+		stage.addChild( this.sprite );
 	}
 
 } );

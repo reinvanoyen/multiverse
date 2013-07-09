@@ -16,7 +16,7 @@ var OrbittingObject = Drawable.extend( {
 		this.orbit_center.x = this.orbit_object.sprite.position.x;
 		this.orbit_center.y = this.orbit_object.sprite.position.y;
 		
-		this.angle += this.velocity;
+		this.angle += this.velocity * Game.delta;
 		
 		this.setPosition( this.orbit_center.x + this.orbit_radius * Math.cos( this.angle ), this.orbit_center.y + this.orbit_radius * Math.sin( this.angle ) );
 	}

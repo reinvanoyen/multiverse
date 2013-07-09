@@ -1,42 +1,46 @@
 var Particle = Drawable.extend( {
 
-	constructor: function( particle_emitter, lifetime, velocity )
+	constructor: function( texture_path, particle_emitter, lifetime, velocity )
 	{
-		this.base( 'textures/particle.png' );
+		this.base( texture_path );
 		
 		this.particle_emitter = particle_emitter;
 		
 		this.lifetime = lifetime;
 		this.lifetime_copy = lifetime;
-		this.velocity = velocity / 100;
+		this.velocity = velocity;
 		this.sprite.visible = false;
 	},
 	update: function()
 	{
-		if( this.particle_emitter.is_emitting )
+		this.sprite.visible = true;
+		
+		if( this.particle_emitter.is_emitting && this.lifetime === 0 )
 		{
-			this.sprite.visible = true;
-			this.lifetime = Math.max( this.lifetime - 10, 0 );
-			this.sprite.alpha = this.lifetime / 10000;
-			
-			if( this.lifetime === 0 )
-			{
-				this.reset();
-			}
+			this.reset();
 		}
+		
+		this.lifetime = Math.max( this.lifetime - 10, 0 );
+		this.sprite.alpha = this.lifetime / 10000;
 		
 		this.move();
 	},
+	updateDirection: function()
+	{
+		var half_angle = this.particle_emitter.angle / 2;
+		this.direction = randomFloat( this.particle_emitter.direction - half_angle, this.particle_emitter.direction + half_angle );
+	},
 	reset: function()
 	{
+		this.updateDirection();
 		this.lifetime = this.lifetime_copy;
 		this.sprite.alpha = 1;
 		this.setPosition( this.particle_emitter.position.x, this.particle_emitter.position.y );
 	},
 	move: function()
 	{
-		var x = this.position.x + this.velocity * Math.cos( ( this.particle_emitter.direction + 90 * ( Math.PI/180 ) ) );
-		var y = this.position.y + this.velocity * Math.sin( ( this.particle_emitter.direction + 90 * ( Math.PI/180 ) ) );
+		var x = this.position.x + this.velocity * Game.delta * Math.cos( ( this.direction ) );
+		var y = this.position.y + this.velocity * Game.delta * Math.sin( ( this.direction ) );
 		this.setPosition( x, y );
 	}
 
