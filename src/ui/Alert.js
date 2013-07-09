@@ -1,3 +1,5 @@
+"use strict";
+
 var Alert = Window.extend( {
 
 	constructor: function( title, text )

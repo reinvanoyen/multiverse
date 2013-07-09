@@ -1,3 +1,5 @@
+"use strict";
+
 var ExhaustFlame = ParticleEmitter.extend( {
 
 	constructor: function()

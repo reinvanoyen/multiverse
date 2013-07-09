@@ -1,3 +1,5 @@
+"use strict";
+
 var Inventory = Window.extend( {
 
 	constructor: function()

@@ -10,12 +10,22 @@
 	background-position: center center;
 	background-size: 100%;
 	
+	#title
+	{
+		color: $secondary_color;
+		font-size: 60px;
+		text-transform: uppercase;
+		position: absolute;
+		top: 300px;
+		left: 200px;
+	}
+	
 	#main_menu_items
 	{
 		list-style: none;
 		position: absolute;
-		bottom: 20%;
-		right: 25%;
+		top: 400px;
+		left: 200px;
 		
 		.main_menu_button
 		{

@@ -1,3 +1,5 @@
+"use strict";
+
 var Notification = Base.extend( {
 
 	constructor: function()

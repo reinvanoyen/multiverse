@@ -1,3 +1,5 @@
+"use strict";
+
 var Cloud = ParticleEmitter.extend( {
 
 	constructor: function()

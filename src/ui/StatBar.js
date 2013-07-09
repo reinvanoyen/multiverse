@@ -1,3 +1,5 @@
+"use strict";
+
 var StatBar = Base.extend( {
 
 	constructor: function()

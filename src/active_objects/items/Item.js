@@ -1,4 +1,6 @@
-var Item = Drawable.extend( {
+"use strict";
+
+var Item = Movable.extend( {
 
 	constructor: function( texture_path )
 	{

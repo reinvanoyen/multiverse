@@ -1,3 +1,5 @@
+"use strict";
+
 var Window = Base.extend( {
 
 	constructor: function()
@@ -29,7 +31,7 @@ var Window = Base.extend( {
 	},
 	close: function()
 	{
-		this.$window.hide();
+		this.$window.fadeOut();
 		this.is_open = false;
 	}
 

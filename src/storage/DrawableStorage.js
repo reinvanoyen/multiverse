@@ -1,3 +1,5 @@
+"use strict";
+
 var DrawableStorage = Storage.extend( {
 
 	updateAll: function()

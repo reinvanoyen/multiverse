@@ -1,3 +1,5 @@
+"use strict";
+
 var Universe = Base.extend( {
 	
 	constructor: function()

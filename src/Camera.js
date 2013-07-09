@@ -1,3 +1,5 @@
+"use strict";
+
 var Camera = Base.extend( {
 
 	constructor: function( stage )

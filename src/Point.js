@@ -1,3 +1,5 @@
+"use strict";
+
 var Point = Base.extend( {
 
 	constructor: function( x, y )

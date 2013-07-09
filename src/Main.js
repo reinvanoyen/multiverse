@@ -1,3 +1,5 @@
+"use strict";
+
 var Main = {
 
 	create: function()
@@ -5,6 +7,7 @@ var Main = {
 		var that = this;
 		
 		this.main_menu = new MainMenu();
+		this.main_menu.setTitle( 'Some game' );
 		
 		// Play
 		this.main_menu.addItem( 'Play', function()

@@ -1,3 +1,5 @@
+"use strict";
+
 var Spark = ParticleEmitter.extend( {
 
 	constructor: function()

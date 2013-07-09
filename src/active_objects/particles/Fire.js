@@ -1,3 +1,5 @@
+"use strict";
+
 var Fire = ParticleEmitter.extend( {
 
 	constructor: function()

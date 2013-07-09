@@ -1,3 +1,5 @@
+"use strict";
+
 var Storage = Base.extend( {
 	
 	constructor: function()
@@ -23,7 +25,7 @@ var Storage = Base.extend( {
 	},
 	each: function( callback )
 	{
-		for( key in this._objects )
+		for( var key in this._objects )
 		{
 			callback( this._objects[ key ] );
 		}

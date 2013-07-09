@@ -1,3 +1,5 @@
+"use strict";
+
 var Tooltip = Base.extend( {
 
 	constructor: function()

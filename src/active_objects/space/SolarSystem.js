@@ -1,3 +1,5 @@
+"use strict";
+
 var SolarSystem = Base.extend( {
 
 	constructor: function( x, y )

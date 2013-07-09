@@ -1,3 +1,5 @@
+"use strict";
+
 var OrbittingObject = Drawable.extend( {
 	
 	constructor: function( texture_path, orbit_object, orbit_radius, orbit_velocity )

@@ -1,4 +1,6 @@
-var Particle = Drawable.extend( {
+"use strict";
+
+var Particle = Movable.extend( {
 
 	constructor: function( texture_path, particle_emitter, lifetime, velocity, scale )
 	{
@@ -8,7 +10,9 @@ var Particle = Drawable.extend( {
 		
 		this.lifetime = lifetime;
 		this.lifetime_copy = lifetime;
+		
 		this.velocity = velocity;
+		
 		this.sprite.scale.x = scale;
 		this.sprite.scale.y = scale;
 		this.sprite.visible = false;
@@ -39,12 +43,6 @@ var Particle = Drawable.extend( {
 		this.sprite.alpha = 1;
 		this.sprite.rotation = this.direction;
 		this.setPosition( this.particle_emitter.position.x, this.particle_emitter.position.y );
-	},
-	move: function()
-	{
-		var x = this.position.x + this.velocity * Game.delta * Math.cos( ( this.direction ) );
-		var y = this.position.y + this.velocity * Game.delta * Math.sin( ( this.direction ) );
-		this.setPosition( x, y );
 	}
 
 } );

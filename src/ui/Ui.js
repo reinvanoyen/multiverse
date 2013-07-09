@@ -1,3 +1,5 @@
+"use strict";
+
 var Ui = Base.extend( {
 
 	constructor: function()
@@ -9,6 +11,7 @@ var Ui = Base.extend( {
 		
 		// Create our UI objects
 		this.inventory = new Inventory();
+		this.console = new Console();
 		this.top = new Top();
 		
 		this.healthbar = new StatBar();
@@ -87,6 +90,20 @@ var Ui = Base.extend( {
 		this.actions.add( 'mute_sound', new Action( 'Mute music', 'ui/icons/planet.png', 34, function()
 		{
 			Game.sounds.get( 'theme' ).mute();
+		} ) );
+		
+		this.actions.add( 'console', new Action( 'Developer console (C)', 'ui/icons/inventory.png', 67, function()
+		{
+			if( that.console.is_open )
+			{
+				that.console.close();
+				that.log.addLine( 'Closed console', 'neutral' );
+			}
+			else
+			{
+				that.console.open();
+				that.log.addLine( 'Opened console', 'neutral' );
+			}
 		} ) );
 		
 		// Create our actionbar

@@ -1,3 +1,5 @@
+"use strict";
+
 var Drawable = Base.extend( {
 
 	constructor: function( texture_path )

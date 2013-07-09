@@ -1,3 +1,5 @@
+"use strict";
+
 var Sound = Base.extend( {
 
 	constructor: function( src, type )

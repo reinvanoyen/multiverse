@@ -1,3 +1,5 @@
+"use strict";
+
 var Action = Base.extend( {
 
 	constructor: function( name, icon_path, keycode, action )

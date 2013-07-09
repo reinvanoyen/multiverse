@@ -1,3 +1,5 @@
+"use strict";
+
 var Game = {
 	
 	create: function( callback )

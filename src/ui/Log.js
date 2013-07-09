@@ -1,3 +1,5 @@
+"use strict";
+
 var Log = Base.extend( {
 
 	constructor: function()

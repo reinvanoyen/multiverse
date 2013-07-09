@@ -1,3 +1,5 @@
+"use strict";
+
 var Sun = Drawable.extend( {
 	
 	constructor: function( texture_path, x, y )

@@ -1,3 +1,5 @@
+"use strict";
+
 var ActionBar = Base.extend( {
 
 	constructor: function( actions )

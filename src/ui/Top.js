@@ -1,3 +1,5 @@
+"use strict";
+
 var Top = Base.extend( {
 
 	constructor: function()

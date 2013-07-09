@@ -1,4 +1,6 @@
-var Player = Drawable.extend( {
+"use strict";
+
+var Player = Movable.extend( {
 
 	constructor: function()
 	{
@@ -40,6 +42,7 @@ var Player = Drawable.extend( {
 	setRotation: function( radian )
 	{
 		this.sprite.rotation = radian;
+		this.direction = radian;
 		this.exhaust_flume.direction = radian - Math.PI;
 		this.exhaust_flame.direction = radian - Math.PI;
 	},
@@ -68,14 +71,6 @@ var Player = Drawable.extend( {
 		{
 			this.easeVelocityTo( 500 );
 		}
-	},
-	move: function()
-	{
-		var x = this.position.x + ( this.velocity * Game.delta ) * Math.cos( ( this.sprite.rotation ) );
-		var y = this.position.y + ( this.velocity * Game.delta ) * Math.sin( ( this.sprite.rotation ) );
-		this.exhaust_flume.setPosition( x, y );
-		this.exhaust_flame.setPosition( x, y );
-		this.setPosition( x, y );
 	},
 	easeVelocityTo: function( n )
 	{
@@ -145,6 +140,8 @@ var Player = Drawable.extend( {
 		}
 		
 		this.move();
+		this.exhaust_flume.setPosition( this.position.x, this.position.y );
+		this.exhaust_flame.setPosition( this.position.x, this.position.y );
 		this.exhaust_flume.update();
 		this.exhaust_flame.update();
 	},

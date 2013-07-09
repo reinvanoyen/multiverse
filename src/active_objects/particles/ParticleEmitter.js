@@ -1,3 +1,5 @@
+"use strict";
+
 var ParticleEmitter = Base.extend( {
 
 	constructor: function()

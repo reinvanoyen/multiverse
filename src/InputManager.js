@@ -1,3 +1,5 @@
+"use strict";
+
 var InputManager = Base.extend( {
 	
 	_keys_down: {},

@@ -1,3 +1,5 @@
+"use strict";
+
 var SoundStorage = Storage.extend( {
 
 	stopAll: function()
