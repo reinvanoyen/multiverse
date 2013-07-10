@@ -9,23 +9,22 @@ var Movable = Drawable.extend( {
 		this.direction = 0;
 		this.acceleration = 3;
 	},
-	accelerate: function( n )
+	accelerate: function( end_velocity )
 	{
-		if( this.velocity > n )
-		{
-			this.velocity = Math.max( this.velocity - this.acceleration, n );
-		}
-		else if( this.velocity < n )
-		{
-			this.velocity = Math.min( this.velocity + this.acceleration, n );
-		}
+		this.velocity = Tweener.linear( this.velocity, end_velocity, this.acceleration );
+	},
+	easeToAngle: function( end_angle )
+	{
+		this.direction = Tweener.linear( this.direction, end_angle, 0.03 );
 	},
 	update: function()
 	{
 		this.frustum();
-		var x = this.position.x + ( this.velocity * Game.delta ) * Math.cos( ( this.direction ) );
-		var y = this.position.y + ( this.velocity * Game.delta ) * Math.sin( ( this.direction ) );
-		this.setPosition( x, y );
+		var velocity = this.velocity * Game.delta;
+		this.setPosition(
+			this.position.x + ( velocity ) * Math.cos( this.direction ),
+			this.position.y + ( velocity ) * Math.sin( this.direction )
+		);
 	}
 	
 } );
