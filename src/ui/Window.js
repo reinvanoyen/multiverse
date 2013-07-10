@@ -10,7 +10,7 @@ var Window = Base.extend( {
 		this.is_resizable = resizable;
 		
 		this.is_open = false;
-		this.$window = $( '<div>' ).addClass( 'window' ).hide().appendTo( $( 'body' ) );
+		this.$window = $( '<div>' ).addClass( 'window' ).hide().appendTo( Main.$body );
 		this.$header = $( '<div>' ).addClass( 'window_header' ).appendTo( this.$window );
 		this.$title = $( '<span>' ).appendTo( this.$header );
 		this.$content = $( '<div>' ).addClass( 'window_content' ).appendTo( this.$window );

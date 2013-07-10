@@ -4,7 +4,7 @@ var Tooltip = Base.extend( {
 
 	constructor: function()
 	{
-		this.$container = $( '<div>' ).addClass( 'tooltip' ).hide().appendTo( $( 'body' ) );
+		this.$container = $( '<div>' ).addClass( 'tooltip' ).hide().appendTo( Main.$body );
 		this.text = false;
 	},
 	setText: function( text )

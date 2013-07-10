@@ -5,7 +5,7 @@ var ActionBar = Base.extend( {
 	constructor: function( actions )
 	{
 		this.actions = actions;
-		this.$container = $( '<div>' ).attr( 'id', 'actionbar' ).appendTo( $( 'body' ) );
+		this.$container = $( '<div>' ).attr( 'id', 'actionbar' ).appendTo( Main.$body );
 		
 		var that = this;
 		this.actions.each( function( e )

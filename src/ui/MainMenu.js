@@ -6,7 +6,7 @@ var MainMenu = Base.extend( {
 	{
 		this.is_open = true;
 		this.title = 'Main menu';
-		this.$container = $( '<div>' ).attr( 'id', 'main_menu' ).appendTo( $( 'body' ) );
+		this.$container = $( '<div>' ).attr( 'id', 'main_menu' ).appendTo( Main.$body );
 		this.$item_list = $( '<ul>' ).attr( 'id', 'main_menu_items' ).appendTo( this.$container );
 		this.$title = $( '<div>' ).attr( 'id', 'title' ).text( this.title ).appendTo( this.$container );
 	},

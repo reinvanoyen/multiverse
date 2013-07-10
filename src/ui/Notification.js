@@ -4,7 +4,7 @@ var Notification = Base.extend( {
 
 	constructor: function()
 	{
-		this.$container = $( '<div>' ).addClass( 'notification' ).hide().appendTo( $( 'body' ) );
+		this.$container = $( '<div>' ).addClass( 'notification' ).hide().appendTo( Main.$body );
 	},
 	setText: function( text )
 	{

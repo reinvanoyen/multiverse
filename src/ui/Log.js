@@ -4,7 +4,7 @@ var Log = Base.extend( {
 
 	constructor: function()
 	{
-		this.$container = $( '<div>' ).attr( 'id', 'log' ).hide().appendTo( $( 'body' ) );
+		this.$container = $( '<div>' ).attr( 'id', 'log' ).hide().appendTo( Main.$body );
 		
 		this.line_count = 0;
 		

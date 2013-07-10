@@ -2,7 +2,7 @@ var ContextMenu = Base.extend( {
 
 	constructor: function()
 	{
-		this.$container = $( '<div>' ).addClass( 'context_menu' ).hide().appendTo( $( 'body' ) );
+		this.$container = $( '<div>' ).addClass( 'context_menu' ).hide().appendTo( Main.$body );
 		this.target = null;
 	},
 	addAction: function( name, action )
