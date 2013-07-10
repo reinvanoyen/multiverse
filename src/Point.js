@@ -13,13 +13,11 @@ var Point = Base.extend( {
 	},
 	getDistance: function( point )
 	{
-		var xs = this.x - point.x;
-		xs = xs * xs;
+		var dx = this.x - point.x;
+		var dy = this.y - point.y;
 		
-		var ys = this.y - point.y;
-		ys = ys * ys;
-		
-		return Math.sqrt( xs + ys );
+		// Gotta love old fella Pythagoras
+		return Math.round( Math.sqrt( dx * dx + dy * dy ) );
 	},
 	equals: function( point )
 	{

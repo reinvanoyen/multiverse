@@ -6,6 +6,8 @@ var Main = {
 	{
 		var that = this;
 		
+		this.$body = $( 'body' );
+		
 		this.main_menu = new MainMenu();
 		this.main_menu.setTitle( 'Some game' );
 		

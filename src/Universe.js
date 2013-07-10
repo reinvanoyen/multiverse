@@ -17,12 +17,18 @@ var Universe = Base.extend( {
 		// Follow player
 		this.camera.follow( this.player );
 		
+		// Add some allies
 		this.ally = new Ally();
 		this.ally.setPosition( 400, -400 );
 		this.ally.follow( this.player );
 		
+		this.ally2 = new Ally();
+		this.ally2.setPosition( 300, 300 );
+		this.ally2.follow( this.ally );
+		
 		// Draw
 		this.ally.draw( this.stage );
+		this.ally2.draw( this.stage );
 		this.player.draw( this.stage );
 		this.solar_systems.drawAll( this.stage );
 		Game.stage.addChild( this.stage );
@@ -43,6 +49,7 @@ var Universe = Base.extend( {
 		this.age++;
 		this.solar_systems.updateAll();
 		this.ally.update();
+		this.ally2.update();
 		this.player.update();
 		this.camera.update();
 	}
