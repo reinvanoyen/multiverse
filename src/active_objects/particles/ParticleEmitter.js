@@ -19,7 +19,7 @@ var ParticleEmitter = Base.extend( {
 		this.min_velocity = 200;
 		this.max_velocity = 1000;
 		
-		this.min_scale = 1;
+		this.min_scale = 0.5;
 		this.max_scale = 1;
 		
 		this.particle_texture = 'textures/particles/smoke.png';

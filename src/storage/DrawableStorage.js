@@ -4,17 +4,17 @@ var DrawableStorage = Storage.extend( {
 
 	updateAll: function()
 	{
-		this.each( function( o )
+		for( var key in this._objects )
 		{
-			o.update();
-		} );
+			this._objects[ key ].update();
+		}
 	},
 	drawAll: function( stage )
 	{
-		this.each( function( o )
+		for( var key in this._objects )
 		{
-			o.draw( stage );
-		} );
+			this._objects[ key ].draw( stage );
+		}
 	}
 
 } );

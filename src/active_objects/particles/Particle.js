@@ -11,16 +11,18 @@ var Particle = Movable.extend( {
 		this.lifetime = lifetime;
 		this.lifetime_copy = lifetime;
 		
+		this.scale = scale;
 		this.velocity = velocity;
 		
-		this.sprite.scale.x = scale;
-		this.sprite.scale.y = scale;
+		this.sprite.scale.x = this.scale;
+		this.sprite.scale.y = this.scale;
+		
 		this.sprite.visible = false;
 	},
 	updateDirection: function()
 	{
 		var half_angle = this.particle_emitter.angle / 2;
-		this.direction = randomFloat( this.particle_emitter.direction - half_angle, this.particle_emitter.direction + half_angle );
+		this.direction = randomFloat( this.particle_emitter.direction - half_angle, this.particle_emitter.direction + half_angle, 5 );
 	},
 	reset: function()
 	{
@@ -39,7 +41,7 @@ var Particle = Movable.extend( {
 			this.reset();
 		}
 		
-		this.lifetime = Math.max( this.lifetime - 10, 0 );
+		this.lifetime = Math.max( this.lifetime - ( 1000 * Game.delta ), 0 );
 		this.sprite.alpha = this.lifetime / 10000;
 		
 		this.base();

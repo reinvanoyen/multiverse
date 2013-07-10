@@ -6,17 +6,17 @@ var ExhaustFlame = ParticleEmitter.extend( {
 	{
 		this.base();
 		
-		this.angle = 4;
+		this.angle = 1;
 		
-		this.min_velocity = 10;
-		this.max_velocity = 30;
+		this.min_velocity = 100;
+		this.max_velocity = 200;
 		
-		this.min_lifetime = 500;
-		this.max_lifetime = 700;
+		this.min_lifetime = 200;
+		this.max_lifetime = 500;
 		
-		this.particle_texture = 'textures/particles/fire.png';
+		this.particle_texture = 'textures/particles/explosion.png';
 		
-		this.addParticles( 80 );
+		this.addParticles( 100 );
 	}
 
 } );

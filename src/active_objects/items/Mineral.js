@@ -42,6 +42,10 @@ var Mineral = Resource.extend( {
 	{
 		this.base();
 		alert( 'You\'re using a mineral!' );
+	},
+	draw: function( stage )
+	{
+		this.base( stage );
 	}
 
 } );
