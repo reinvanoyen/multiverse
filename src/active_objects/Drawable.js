@@ -40,7 +40,7 @@ var Drawable = Base.extend( {
 	},
 	frustum: function()
 	{
-		if( Game.universe.camera.center.getDistance( this.position ) > 2000 )
+		if( Game.universe.camera.center.getDistance( this.position ) > Game.width )
 		{
 			this.sprite.visible = false;
 		}
