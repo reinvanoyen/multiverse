@@ -31,9 +31,18 @@ var Game = {
 		Game.sounds = new SoundStorage();
 		Game.universe = new Universe();
 		
+		// Create stats
+		Game.stats = new Stats();
+		Game.stats.setMode( 0 );
+		Game.stats.domElement.style.position = 'absolute';
+		Game.stats.domElement.style.right = '20px';
+		Game.stats.domElement.style.bottom = '20px';
+		document.body.appendChild( Game.stats.domElement );
+		
 		Game.loadSounds();
 		
 		// Append our view to the body
+		
 		document.body.appendChild( Game.renderer.view );
 		
 		// Call callback
@@ -59,6 +68,7 @@ var Game = {
 	{
 		if( Game.state === 'playing' )
 		{
+			Game.stats.begin();
 			Game.now = Date.now();
 			Game.delta = ( Game.now - Game.then ) / 1000;
 			
@@ -72,6 +82,7 @@ var Game = {
 			requestAnimFrame( Game.renderFrame );
 			
 			Game.then = Game.now;
+			Game.stats.end();
 		}
 	},
 	loadSounds: function()
