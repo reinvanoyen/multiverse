@@ -61,7 +61,7 @@ var Player = Movable.extend( {
 		this.setRotation( this.sprite.rotation + 1 * Game.delta );
 		if( move_forward )
 		{
-			this.easeVelocityTo( 500 );
+			this.accelerate( 500 );
 		}
 	},
 	turnLeft: function( move_forward )
@@ -69,18 +69,7 @@ var Player = Movable.extend( {
 		this.setRotation( this.sprite.rotation - 1 * Game.delta );
 		if( move_forward )
 		{
-			this.easeVelocityTo( 500 );
-		}
-	},
-	easeVelocityTo: function( n )
-	{
-		if( this.velocity > n )
-		{
-			this.velocity = Math.max( this.velocity - 5, n );
-		}
-		else if( this.velocity < n )
-		{
-			this.velocity = Math.min( this.velocity + 5, n );
+			this.accelerate( 500 );
 		}
 	},
 	update: function()
@@ -134,22 +123,22 @@ var Player = Movable.extend( {
 			else
 			{
 				this.exhaust_flume.stop();
-				this.easeVelocityTo( 0 );
+				this.accelerate( 0 );
 				Game.sounds.get( 'booster' ).stop();
 			}
 		}
 		
-		this.move();
 		this.exhaust_flume.setPosition( this.position.x, this.position.y );
 		this.exhaust_flame.setPosition( this.position.x, this.position.y );
 		this.exhaust_flume.update();
 		this.exhaust_flame.update();
+		this.base();
 	},
 	draw: function( stage )
 	{
 		this.exhaust_flume.draw( stage );
 		this.exhaust_flame.draw( stage );
-		stage.addChild( this.sprite );
+		this.base( stage );
 	}
 
 } );

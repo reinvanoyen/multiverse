@@ -17,20 +17,6 @@ var Particle = Movable.extend( {
 		this.sprite.scale.y = scale;
 		this.sprite.visible = false;
 	},
-	update: function()
-	{
-		this.sprite.visible = true;
-		
-		if( this.particle_emitter.is_emitting && this.lifetime === 0 )
-		{
-			this.reset();
-		}
-		
-		this.lifetime = Math.max( this.lifetime - 10, 0 );
-		this.sprite.alpha = this.lifetime / 10000;
-		
-		this.move();
-	},
 	updateDirection: function()
 	{
 		var half_angle = this.particle_emitter.angle / 2;
@@ -43,6 +29,20 @@ var Particle = Movable.extend( {
 		this.sprite.alpha = 1;
 		this.sprite.rotation = this.direction;
 		this.setPosition( this.particle_emitter.position.x, this.particle_emitter.position.y );
+	},
+	update: function()
+	{
+		this.sprite.visible = true;
+		
+		if( this.particle_emitter.is_emitting && this.lifetime === 0 )
+		{
+			this.reset();
+		}
+		
+		this.lifetime = Math.max( this.lifetime - 10, 0 );
+		this.sprite.alpha = this.lifetime / 10000;
+		
+		this.base();
 	}
 
 } );

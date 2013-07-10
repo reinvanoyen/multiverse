@@ -4,18 +4,24 @@ var Inventory = Window.extend( {
 
 	constructor: function()
 	{
-		this.base();
+		this.base( true, false );
+		this.setHeight( 300 );
 		this.setTitle( 'Inventory' );
-		this.items = new Storage();
+		this.items = new ItemGrid( 80, true );
+		this.setContent( this.items.$container );
 	},
 	addItem: function( item )
 	{
-		this.items.add( 'item_' + this.items.length() + 1, item );
-		this.updateContent();
-	},
-	updateContent: function()
-	{
-		this.setContent( this.items.length() );
+		if( this.items.isFull() )
+		{
+			Game.ui.log.addLine( 'Your inventory is full', 'error' );
+		}
+		else
+		{
+			item.is_in_inventory = true;
+			this.items.add( item );
+			Game.ui.log.addLine( 'Picked up ' + item.name, 'success' );
+		}
 	}
 
 } );

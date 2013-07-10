@@ -1,15 +1,14 @@
 "use strict";
 
-var Mineral = Resource.extend( {
+var Gas = Resource.extend( {
 
 	constructor: function( x, y )
 	{
-		this.base( 'textures/items/mineral.png' );
+		this.base( 'textures/items/gas.png' );
 		
-		this.ui_skin = 'textures/items/ui_mineral.png';
+		this.ui_skin = 'textures/items/ui_gas.png';
 		this.setPosition( x, y );
-		this.name = 'mineral';
-		this.acceleration = 5;
+		this.name = 'gas';
 	},
 	update: function()
 	{
@@ -19,10 +18,10 @@ var Mineral = Resource.extend( {
 		{
 			var distance_to_player = Game.universe.player.position.getDistance( this.position );
 			
-			if( distance_to_player < 300 )
+			if( distance_to_player < 600 )
 			{
 				this.direction = -this.position.getAngle( Game.universe.player.position );
-				this.accelerate( 1000 );
+				this.accelerate( 800 );
 			
 				if( distance_to_player < ( this.sprite.width * 2 ) )
 				{
@@ -41,7 +40,7 @@ var Mineral = Resource.extend( {
 	action: function()
 	{
 		this.base();
-		alert( 'You\'re using a mineral!' );
+		alert( 'You\'re using Gas!' );
 	}
 
 } );

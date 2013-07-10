@@ -2,9 +2,13 @@
 
 var Window = Base.extend( {
 
-	constructor: function()
+	constructor: function( draggable, resizable )
 	{
 		var that = this;
+		
+		this.is_draggable = draggable;
+		this.is_resizable = resizable;
+		
 		this.is_open = false;
 		this.$window = $( '<div>' ).addClass( 'window' ).hide().appendTo( $( 'body' ) );
 		this.$header = $( '<div>' ).addClass( 'window_header' ).appendTo( this.$window );
@@ -24,6 +28,10 @@ var Window = Base.extend( {
 	{
 		this.$content.html( html );
 	},
+	setHeight: function( height )
+	{
+		this.$content.css( 'height', height );
+	},
 	open: function()
 	{
 		this.$window.show();
@@ -31,7 +39,7 @@ var Window = Base.extend( {
 	},
 	close: function()
 	{
-		this.$window.fadeOut();
+		this.$window.hide();
 		this.is_open = false;
 	}
 

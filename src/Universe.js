@@ -17,7 +17,12 @@ var Universe = Base.extend( {
 		// Follow player
 		this.camera.follow( this.player );
 		
+		this.ally = new Ally();
+		this.ally.setPosition( 400, -400 );
+		this.ally.follow( this.player );
+		
 		// Draw
+		this.ally.draw( this.stage );
 		this.player.draw( this.stage );
 		this.solar_systems.drawAll( this.stage );
 		Game.stage.addChild( this.stage );
@@ -28,7 +33,8 @@ var Universe = Base.extend( {
 		{
 			var solar = new SolarSystem( randomInt( -20000, 20000 ), randomInt( -20000, 20000 ) );
 			solar.addPlanets( 15 );
-			solar.addMinerals( 150 );
+			solar.addMinerals( 200 );
+			solar.addGas( 100 );
 			this.solar_systems.add( 'solar_' + i, solar );
 		}
 	},
@@ -36,6 +42,7 @@ var Universe = Base.extend( {
 	{
 		this.age++;
 		this.solar_systems.updateAll();
+		this.ally.update();
 		this.player.update();
 		this.camera.update();
 	}

@@ -9,6 +9,7 @@ var SolarSystem = Base.extend( {
 		this.planets = new DrawableStorage();
 		this.moons = new DrawableStorage();
 		this.minerals = new DrawableStorage();
+		this.gas = new DrawableStorage();
 	},
 	addPlanets: function( n )
 	{
@@ -36,12 +37,21 @@ var SolarSystem = Base.extend( {
 			this.minerals.add( 'mineral_' + i, mineral );
 		}
 	},
+	addGas: function( n )
+	{
+		for( var i = 1; i <= n; i++ )
+		{
+			var gas = new Gas( randomInt( this.center.x - 10000, this.center.x + 10000 ), randomInt( this.center.y - 10000, this.center.y + 10000 ) );
+			this.gas.add( 'gas_' + i, gas );
+		}
+	},
 	draw: function( stage )
 	{
 		this.sun.draw( stage );
 		this.planets.drawAll( stage );
 		this.moons.drawAll( stage );
 		this.minerals.drawAll( stage );
+		this.gas.drawAll( stage );
 	},
 	update: function()
 	{
@@ -49,6 +59,7 @@ var SolarSystem = Base.extend( {
 		this.planets.updateAll();
 		this.moons.updateAll();
 		this.minerals.updateAll();
+		this.gas.updateAll();
 	}
 
 } );

@@ -9,7 +9,7 @@ var Point = Base.extend( {
 	},
 	getAngle: function( point )
 	{
-		return Math.atan2( point.x - this.x, point.y - this.y );
+		return Math.atan2( point.x - this.x, point.y - this.y ) - Math.PI / 2;
 	},
 	getDistance: function( point )
 	{

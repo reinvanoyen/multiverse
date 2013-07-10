@@ -7,6 +7,11 @@ var Tooltip = Base.extend( {
 		this.$container = $( '<div>' ).addClass( 'tooltip' ).hide().appendTo( $( 'body' ) );
 		this.text = false;
 	},
+	setText: function( text )
+	{
+		this.text = text;
+		this.$container.html( this.text );
+	},
 	addLine: function( text )
 	{
 		if( this.text )
