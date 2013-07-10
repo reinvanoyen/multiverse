@@ -1,77 +1,90 @@
 "use strict";
 
+requestAnimFrame = (function() {
+return window.requestAnimationFrame ||
+window.webkitRequestAnimationFrame ||
+window.mozRequestAnimationFrame ||
+window.oRequestAnimationFrame ||
+window.msRequestAnimationFrame ||
+function(/* function FrameRequestCallback */ callback, /* DOMElement Element */ element) {
+window.setTimeout(callback, 1000/60);
+}; })();
+
 var Game = {
 	
 	create: function( callback )
 	{
-		this.state = 'initialising';
+		Game.state = 'initialising';
 		
-		this.width = window.innerWidth;
-		this.height = window.innerHeight;
+		Game.width = window.innerWidth;
+		Game.height = window.innerHeight;
 		
-		this.stage = new PIXI.Stage( 0x071621 );
-		this.renderer = PIXI.autoDetectRenderer( this.width, this.height );
+		Game.stage = new PIXI.Stage( 0x071621 );
+		Game.renderer = PIXI.autoDetectRenderer( Game.width, Game.height );
 		
 		// Delta time
-		this.delta = 0;
+		Game.delta = 0;
 		
 		// Create our needed objects
-		this.input_manager = new InputManager();
-		this.ui = new Ui();
-		this.sounds = new SoundStorage();
-		this.universe = new Universe();
+		Game.input_manager = new InputManager();
+		Game.ui = new Ui();
+		Game.sounds = new SoundStorage();
+		Game.universe = new Universe();
 		
-		this.loadSounds();
+		Game.loadSounds();
 		
 		// Append our view to the body
-		document.body.appendChild( this.renderer.view );
+		document.body.appendChild( Game.renderer.view );
 		
 		// Call callback
 		callback();
 	},
 	start: function()
 	{
-		var that = this;
+		var that = Game;
 		
-		this.sounds.unmuteAll();
-		this.state = 'playing';
-
-		var end_time = Date.now();
+		Game.sounds.unmuteAll();
+		Game.state = 'playing';
 		
-		this.loopInterval = setInterval( function()
-		{
-			var start_time = Date.now();
-			that.delta = ( start_time - end_time ) / 1000;
-			that.update();
-			end_time = start_time;
-		}, 1 );
+		Game.then = Date.now();
+		
+		Game.renderFrame();
 	},
 	stop: function()
 	{
-		this.state = 'paused';
-		this.sounds.muteAll();
-		clearInterval( this.loopInterval );
+		Game.state = 'paused';
+		Game.sounds.muteAll();
 	},
-	update: function()
+	renderFrame: function()
 	{
-		// Update objects
-		this.universe.update();
-		this.ui.update();
-		
-		// Render stage
-		this.renderer.render( this.stage );
+		if( Game.state === 'playing' )
+		{
+			Game.now = Date.now();
+			Game.delta = ( Game.now - Game.then ) / 1000;
+			
+			Game.universe.update();
+			Game.ui.update();
+			
+			// Render stage
+			Game.renderer.render( Game.stage );
+			
+			// Request next frame
+			requestAnimFrame( Game.renderFrame );
+			
+			Game.then = Game.now;
+		}
 	},
 	loadSounds: function()
 	{
 		// Sound
 		var theme_sound = new Sound( 'sound/music/stringpad1.mp3', 'audio/mpeg' );
 		theme_sound.loop();
-		this.sounds.add( 'theme', theme_sound );
-		this.sounds.add( 'sidebooster', new Sound( 'sound/ship/sidebooster.mp3', 'audio/mpeg' ) );
-		this.sounds.add( 'booster', new Sound( 'sound/ship/booster.mp3', 'audio/mpeg' ) );
-		this.sounds.add( 'action', new Sound( 'sound/ui/action.mp3', 'audio/mpeg' ) );
-		this.sounds.add( 'mineral_pickup', new Sound( 'sound/ship/mineral_pickup.mp3', 'audio/mpeg' ) );
-		this.sounds.add( 'waypoint_set', new Sound( 'sound/ui/waypoint_set.mp3', 'audio/mpeg' ) );
-		this.sounds.get( 'theme' ).play();
+		Game.sounds.add( 'theme', theme_sound );
+		Game.sounds.add( 'sidebooster', new Sound( 'sound/ship/sidebooster.mp3', 'audio/mpeg' ) );
+		Game.sounds.add( 'booster', new Sound( 'sound/ship/booster.mp3', 'audio/mpeg' ) );
+		Game.sounds.add( 'action', new Sound( 'sound/ui/action.mp3', 'audio/mpeg' ) );
+		Game.sounds.add( 'mineral_pickup', new Sound( 'sound/ship/mineral_pickup.mp3', 'audio/mpeg' ) );
+		Game.sounds.add( 'waypoint_set', new Sound( 'sound/ui/waypoint_set.mp3', 'audio/mpeg' ) );
+		Game.sounds.get( 'theme' ).play();
 	}
 };
