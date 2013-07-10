@@ -3,42 +3,67 @@ var AiEntity = Movable.extend( {
 	constructor: function( texture_path )
 	{
 		this.base( texture_path );
-		this.state = 'idle';
-		this.view_distance = 5000;
+		this.view_distance = 1000;
 		this.acceleration = 10;
 		this.exhaust_flume = new ExhaustFlume();
+		
+		this.target = null;
+		this.state = 'idle';
 	},
-	draw: function( stage )
+	setState: function( state )
 	{
-		this.base( stage );
-		this.exhaust_flume.draw( stage );
+		this.state = state;
 	},
-	follow: function( movable )
+	setTarget: function( drawable )
 	{
-		this.state = 'following';
-		this.follow_object = movable;
+		this.target = drawable;
+	},
+	follow: function()
+	{
+		var distance = this.position.getDistance( this.target.position );
+			
+		if( distance < this.view_distance )
+		{
+			if( distance > 300 )
+			{
+				this.easeToAngle( -this.position.getAngle( this.target.position ) );
+				this.accelerate( 350 );
+				this.exhaust_flume.start();
+			}
+			else
+			{
+				this.accelerate( 0 );
+				this.exhaust_flume.stop();
+			}
+			this.sprite.rotation = this.direction;
+		}
+	},
+	look: function()
+	{
+		var distance = this.position.getDistance( this.target.position );
+			
+		if( distance < this.view_distance )
+		{
+			this.easeToAngle( -this.position.getAngle( this.target.position ) );
+			this.sprite.rotation = this.direction;
+		}
+	},
+	idle: function()
+	{
+	
 	},
 	update: function()
 	{
-		if( this.state === 'following' )
+		switch( this.state )
 		{
-			var distance = this.position.getDistance( this.follow_object.position );
-			
-			if( distance < this.view_distance )
-			{
-				if( distance > 300 )
-				{
-					this.easeToAngle( -this.position.getAngle( this.follow_object.position ) );
-					this.accelerate( 700 );
-					this.exhaust_flume.start();
-				}
-				else
-				{
-					this.accelerate( 10 );
-					this.exhaust_flume.stop();
-				}
-				this.sprite.rotation = this.direction;
-			}
+			case 'following':
+				this.follow();
+			break;
+			case 'looking':
+				this.look();
+			break;
+			default:
+				this.idle();
 		}
 		
 		this.exhaust_flume.direction = -this.direction;
@@ -46,6 +71,11 @@ var AiEntity = Movable.extend( {
 		this.exhaust_flume.update();
 		
 		this.base();
+	},
+	draw: function( stage )
+	{
+		this.exhaust_flume.draw( stage );
+		this.base( stage );
 	}
 
 } );
