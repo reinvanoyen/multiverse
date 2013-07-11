@@ -2,7 +2,7 @@
 
 # Set this to the root of your project when deployed:
 http_path = "/"
-css_dir = "style"
+css_dir = "src/style"
 sass_dir = "sass"
 
 # You can select your preferred output style here (can be overridden via the command line):
