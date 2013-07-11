@@ -1,0 +1,24 @@
+#!/bin/bash
+
+def=$(date)
+NAME=${1:-$def}
+
+clear
+
+echo "Creating target dir"
+mkdir ../builds/win/current_build
+
+echo "Copying node-webkit"
+cp -r ../node_webkit/win/* ../builds/win/current_build
+
+echo "Creating directory"
+mkdir ../builds/win/current_build/app.nw
+
+echo "Copying source"
+cp -r ../src/* ../builds/win/current_build/app.nw
+
+echo "Merging to exe"
+copy /b ../builds/current_build/nw.exe+app.nw app.exe 
+
+echo "=== 100% COMPLETE ==="
+echo "Build $NAME.exe created"
