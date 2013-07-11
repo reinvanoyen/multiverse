@@ -1,0 +1,24 @@
+{
+	"name": "Multiverse",
+	"description": "Space game",
+	"version": "0.1",
+	"maintainers":[ {
+		"name": "Rein Van Oyen",
+		"email": "reinvanoyen@gmail.com"
+	},
+	{
+		"name": "Laurens Lefebure"
+	},
+	{
+		"name": "Martijn Van Bergh"
+	} ],
+	"main": "index.html",
+	"window": {
+		"position": "center",
+		"width": 800,
+		"height": 600,
+		"min_width": 800,
+ 		"min_height": 600
+	},
+	"chromium-args": "--disable-web-security --enable-webgl --ignore-gpu-blacklist"
+}

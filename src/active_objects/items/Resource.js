@@ -1,1 +1,0 @@
-var Resource = Item.extend( {} );

@@ -1,5 +1,0 @@
-/* line 2, ../sass/main.scss */
-body { -webkit-touch-callout: none; -webkit-user-select: none; -moz-user-select: none; user-select: none; overflow: hidden; background-color: grey; font: 11px/18px Helvetica, Arial; cursor: url("../ui/cursor.png"), default; }
-
-/* line 14, ../sass/main.scss */
-canvas { display: block; }

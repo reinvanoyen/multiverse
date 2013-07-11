@@ -1,0 +1,97 @@
+/* line 17, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; font: inherit; font-size: 100%; vertical-align: baseline; }
+
+/* line 22, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html { line-height: 1; }
+
+/* line 24, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul { list-style: none; }
+
+/* line 26, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table { border-collapse: collapse; border-spacing: 0; }
+
+/* line 28, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td { text-align: left; font-weight: normal; vertical-align: middle; }
+
+/* line 30, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote { quotes: none; }
+/* line 103, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after { content: ""; content: none; }
+
+/* line 32, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img { border: none; }
+
+/* line 116, ../../../../../Library/Ruby/Gems/1.8/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary { display: block; }
+
+/* line 2, ../sass/main.scss */
+body { -webkit-touch-callout: none; -webkit-user-select: none; -moz-user-select: none; user-select: none; overflow: hidden; background-color: #111111; font: 11px/18px Helvetica, Arial; cursor: url("../ui/cursor.png"), default; }
+
+/* line 14, ../sass/main.scss */
+canvas { display: block; }
+
+/* line 2, ../sass/ui/main_menu.scss */
+#main_menu { background-color: #111111; width: 100%; height: 100%; z-index: 1; position: absolute; background-image: url(../ui/main_menu_bg.jpg); background-repeat: no-repeat; background-position: center center; background-size: 100%; }
+/* line 14, ../sass/ui/main_menu.scss */
+#main_menu #title { color: white; font-size: 60px; text-transform: uppercase; position: absolute; top: 300px; left: 200px; }
+/* line 24, ../sass/ui/main_menu.scss */
+#main_menu #main_menu_items { list-style: none; position: absolute; top: 400px; left: 200px; }
+/* line 31, ../sass/ui/main_menu.scss */
+#main_menu #main_menu_items .main_menu_button { font-size: 20px; text-transform: uppercase; line-height: 30px; color: white; }
+/* line 38, ../sass/ui/main_menu.scss */
+#main_menu #main_menu_items .main_menu_button:hover { background-color: #111111; }
+
+/* line 2, ../sass/ui/log.scss */
+#log { width: 300px; height: 200px; background-color: #111111; opacity: 0.7; position: absolute; bottom: 0; left: 50px; padding: 20px; }
+/* line 13, ../sass/ui/log.scss */
+#log > span { display: block; }
+
+/* line 2, ../sass/ui/top.scss */
+#top { background-color: black; opacity: 0.7; width: 100%; height: 35px; position: absolute; top: 0; left: 0; }
+/* line 12, ../sass/ui/top.scss */
+#top #age { color: white; text-align: center; }
+
+/* line 2, ../sass/ui/window.scss */
+.window { position: absolute; top: 300px; left: 300px; color: white; background-color: #111111; opacity: 0.9; border: 1px solid #222222; width: 400px; box-shadow: 0 0 5px rgba(13, 79, 139, 0.3); }
+/* line 14, ../sass/ui/window.scss */
+.window textarea { width: 100%; padding: 0; margin: 0; border: 0; height: 300px; background-color: #111111; border: 1px solid #222222; color: white; }
+
+/* line 27, ../sass/ui/window.scss */
+.window_header { font-size: 11px; text-align: center; text-transform: uppercase; padding: 10px; background-color: black; }
+
+/* line 36, ../sass/ui/window.scss */
+.window_content { padding: 20px; overflow: scroll; }
+
+/* line 42, ../sass/ui/window.scss */
+.window_close_button { width: 20px; height: 20px; background-color: #ccc; position: absolute; right: 10px; top: 10px; }
+
+/* line 2, ../sass/ui/tooltip.scss */
+.tooltip { background-color: #111111; opacity: 0.7; color: white; position: absolute; top: 0; left: 0; padding: 5px; }
+
+/* line 2, ../sass/ui/notification.scss */
+.notification { position: absolute; width: 500px; font-size: 25px; top: 20%; left: 50%; margin: 0 0 0 -250px; overflow: visible; white-space: nowrap; color: white; padding: 10px; text-align: center; }
+
+/* line 2, ../sass/ui/actionbar.scss */
+#actionbar { position: absolute; left: 0; top: 20%; }
+
+/* line 9, ../sass/ui/actionbar.scss */
+.action { width: 50px; height: 50px; background-color: #111; opacity: 0.7; margin-bottom: 1px; }
+
+/* line 2, ../sass/ui/statbar.scss */
+.statbar { position: absolute; top: 50px; right: 20px; width: 200px; height: 10px; background-color: black; }
+/* line 11, ../sass/ui/statbar.scss */
+.statbar > div { background-color: #00688b; width: 100%; height: 100%; }
+
+/* line 2, ../sass/ui/item_grid.scss */
+.item_grid { overflow: hidden; }
+/* line 6, ../sass/ui/item_grid.scss */
+.item_grid > li { float: left; width: 50px; height: 50px; background-color: black; margin-right: 1px; margin-bottom: 1px; }
+/* line 15, ../sass/ui/item_grid.scss */
+.item_grid > li:hover img { opacity: 1; }
+/* line 20, ../sass/ui/item_grid.scss */
+.item_grid > li img { opacity: 0.6; display: block; width: 100%; height: 100%; }
+
+/* line 2, ../sass/ui/context_menu.scss */
+.context_menu { background-color: #111111; opacity: 0.7; color: white; position: absolute; top: 0; left: 0; width: 200px; }
+/* line 12, ../sass/ui/context_menu.scss */
+.context_menu span { padding: 0 5px; line-height: 30px; }

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+def=$(date)
+NAME=${1:-$def}
+
+clear
+echo "Copying node-webkit"
+cp -r ../node_webkit/mac/* ../builds/mac/current_build
+
+echo "Creating directory"
+mkdir ../builds/mac/current_build/Contents/Resources/app.nw
+
+echo "Copying source"
+cp -r ../src/* ../builds/mac/current_build/Contents/Resources/app.nw
+
+echo "Renaming build"
+mv ../builds/mac/current_build "../builds/mac/$NAME.app"
+
+echo "=== 100% COMPLETE ==="
+echo "Build $NAME.app created"

@@ -1,0 +1,3 @@
+var RandomEventManager = Base.extend( {
+
+} );

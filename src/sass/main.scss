@@ -1,0 +1,16 @@
+body
+{
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+	overflow: hidden;
+	background-color: $primary_color;
+	font: 11px/18px Helvetica, Arial;
+	cursor: url('../ui/cursor.png'), default;
+}
+
+canvas
+{
+	display: block;
+}

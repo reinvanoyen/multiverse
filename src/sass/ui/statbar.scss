@@ -1,0 +1,16 @@
+.statbar
+{
+	position: absolute;
+	top: 50px;
+	right: 20px;
+	width: 200px;
+	height: 10px;
+	background-color: black;
+	
+	> div
+	{
+		background-color: #00688b;
+		width: 100%;
+		height: 100%;
+	}
+}
