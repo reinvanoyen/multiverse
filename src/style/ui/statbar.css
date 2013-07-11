@@ -1,1 +1,4 @@
-.statbar{position:absolute;top:50px;right:20px;width:200px;height:10px;background-color:black}.statbar>div{background-color:#00688b;width:100%;height:100%}
+/* line 2, ../../../sass/ui/statbar.scss */
+.statbar { position: absolute; top: 50px; right: 20px; width: 200px; height: 10px; background-color: black; }
+/* line 11, ../../../sass/ui/statbar.scss */
+.statbar > div { background-color: #00688b; width: 100%; height: 100%; }

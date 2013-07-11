@@ -21,6 +21,12 @@
 		border: 1px solid $border_color;
 		color: $secondary_color;
 	}
+
+	&.resizable
+	{
+		resize: both;
+		overflow: auto;
+	}
 }
 
 .window_header
@@ -34,8 +40,8 @@
 
 .window_content
 {
-	padding: 20px;
-	overflow: scroll;
+/*	padding: 20px;
+	overflow: scroll;*/
 }
 
 .window_close_button

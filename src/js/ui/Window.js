@@ -18,6 +18,11 @@ var Window = Base.extend( {
 		{
 			that.close();
 		} );
+		
+		if( this.is_resizable )
+		{
+			this.$window.addClass( 'resizable' );
+		}
 	},
 	setTitle: function( title )
 	{

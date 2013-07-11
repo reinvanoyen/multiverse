@@ -4,7 +4,7 @@ var Inventory = Window.extend( {
 
 	constructor: function()
 	{
-		this.base( true, false );
+		this.base( true, true );
 		this.setHeight( 300 );
 		this.setTitle( 'Inventory' );
 		this.items = new ItemGrid( 80, true );
