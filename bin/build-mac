@@ -4,6 +4,10 @@ def=$(date)
 NAME=${1:-$def}
 
 clear
+
+echo "Preparing"
+rm -Rf ../builds/mac/current_build
+
 echo "Copying node-webkit"
 cp -r ../node_webkit/mac/* ../builds/mac/current_build
 

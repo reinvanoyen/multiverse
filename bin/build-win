@@ -5,20 +5,29 @@ NAME=${1:-$def}
 
 clear
 
+echo "Preparing"
+rm -Rf ../builds/win/current_build
+
 echo "Creating target dir"
 mkdir ../builds/win/current_build
 
 echo "Copying node-webkit"
 cp -r ../node_webkit/win/* ../builds/win/current_build
 
-echo "Creating directory"
-mkdir ../builds/win/current_build/app.nw
+echo "Compressing source"
+cd ../
+cd src
+zip -r ../builds/win/current_build/app.nw *
 
-echo "Copying source"
-cp -r ../src/* ../builds/win/current_build/app.nw
-
+cd ../
 echo "Merging to exe"
-copy /b ../builds/current_build/nw.exe+app.nw app.exe 
+cat builds/win/current_build/nw.exe builds/win/current_build/app.nw > builds/win/current_build/app.exe 
+
+echo "Cleaning up"
+rm builds/win/current_build/nw.exe
+rm builds/win/current_build/app.nw
+
+mv builds/win/current_build "builds/win/$NAME"
 
 echo "=== 100% COMPLETE ==="
-echo "Build $NAME.exe created"
+echo "Build $NAME created"
