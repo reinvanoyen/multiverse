@@ -15,7 +15,11 @@ var ItemGrid = Base.extend( {
 			
 			this.context_menu.addAction( 'Destroy', function( slot )
 			{
-				that.clearSlot( slot );
+				var confirm = window.confirm( 'Are you sure?' );
+				if( confirm )
+				{
+					that.clearSlot( slot );
+				}
 			} );
 		}
 		

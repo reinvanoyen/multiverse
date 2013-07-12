@@ -7,7 +7,7 @@ var Inventory = Window.extend( {
 		this.base( true, true );
 		this.setHeight( 300 );
 		this.setTitle( 'Inventory' );
-		this.items = new ItemGrid( 80, true );
+		this.items = new ItemGrid( 70, true );
 		this.setContent( this.items.$container );
 	},
 	addItem: function( item )

@@ -10,14 +10,14 @@ var Window = Base.extend( {
 		this.is_resizable = resizable;
 		
 		this.is_open = false;
+		
 		this.$window = $( '<div>' ).addClass( 'window' ).hide().appendTo( Main.$body );
+
 		this.$header = $( '<div>' ).addClass( 'window_header' ).appendTo( this.$window );
 		this.$title = $( '<span>' ).appendTo( this.$header );
-		this.$content = $( '<div>' ).addClass( 'window_content' ).appendTo( this.$window );
-		this.$close_button = $( '<div>' ).addClass( 'window_close_button' ).appendTo( this.$header ).click( function()
-		{
-			that.close();
-		} );
+		
+		this.$container = $( '<div>' ).addClass( 'window_container' ).appendTo( this.$window );
+		this.$content = $( '<div>' ).addClass( 'window_content' ).appendTo( this.$container );
 		
 		if( this.is_resizable )
 		{
@@ -39,6 +39,7 @@ var Window = Base.extend( {
 	},
 	open: function()
 	{
+		this.focus();
 		this.$window.show();
 		this.is_open = true;
 	},
@@ -46,6 +47,14 @@ var Window = Base.extend( {
 	{
 		this.$window.hide();
 		this.is_open = false;
+	},
+	focus: function()
+	{
+		this.$window.removeClass( 'unfocused' ).addClass( 'focused' );
+	},
+	unfocus: function()
+	{
+		this.$window.removeClass( 'focused' ).addClass( 'unfocused' );
 	}
 
 } );
