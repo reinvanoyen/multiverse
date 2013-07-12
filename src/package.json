@@ -14,8 +14,9 @@
 	} ],
 	"main": "index.html",
 	"window": {
-		"frame": true,
-		"toolbar": true,
+		"fullscreen": true,
+		"frame": false,
+		"toolbar": false,
 		"position": "center"
 	},
 	"chromium-args": "--enable-webgl --ignore-gpu-blacklist"
