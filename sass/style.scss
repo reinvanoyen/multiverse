@@ -1,13 +1,38 @@
+// Import needed compass modules
+@import "compass/css3";
+@import "compass/reset";
+
+// Define some vars
 $primary_color: #111;
 $secondary_color: #fff;
-$glow_color: #0d4f8b;
+$alternate_color: black;
+$glow_color: #15202a;
 $border_color: #222;
 
+// Mixins
+@mixin header
+{
+	color: $secondary_color;
+	text-align: center;
+	text-transform: uppercase;
+	padding: 0 10px;
+	line-height: 30px;
+	@include background( linear-gradient( top, $glow_color, rgba( $alternate_color, 0 ) ) );
+	letter-spacing: 2px;
+}
+
+@mixin default
+{
+	box-shadow: 0 0 50px rgba( $alternate_color, 0.3 );
+	background-color: rgba( $alternate_color, 0.6 );
+	@include border-radius( 5px );
+}
+
 // Import general styling
-@import "compass/reset";
 @import "main";
 
 // Import UI styling
+@import "ui/scrollbar";
 @import "ui/main_menu";
 @import "ui/log";
 @import "ui/top";

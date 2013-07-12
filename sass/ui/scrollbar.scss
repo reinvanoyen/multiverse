@@ -1,0 +1,11 @@
+::-webkit-scrollbar
+{
+	width: 3px;
+	height: 3px;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: $glow_color;
+	@include border-radius( 3px );
+}

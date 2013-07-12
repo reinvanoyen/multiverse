@@ -30,6 +30,12 @@ body { -webkit-touch-callout: none; -webkit-user-select: none; -moz-user-select:
 /* line 14, ../../sass/main.scss */
 canvas { display: block; }
 
+/* line 2, ../../sass/ui/scrollbar.scss */
+::-webkit-scrollbar { width: 3px; height: 3px; }
+
+/* line 8, ../../sass/ui/scrollbar.scss */
+::-webkit-scrollbar-thumb { background-color: #15202a; -webkit-border-radius: 3px; -moz-border-radius: 3px; -ms-border-radius: 3px; -o-border-radius: 3px; border-radius: 3px; }
+
 /* line 2, ../../sass/ui/main_menu.scss */
 #main_menu { background-color: #111111; width: 100%; height: 100%; z-index: 1; position: absolute; background-image: url(../ui/main_menu_bg.jpg); background-repeat: no-repeat; background-position: center center; background-size: auto 100%; }
 /* line 14, ../../sass/ui/main_menu.scss */
@@ -42,7 +48,7 @@ canvas { display: block; }
 #main_menu #main_menu_items .main_menu_button:hover { background-color: #111111; }
 
 /* line 2, ../../sass/ui/log.scss */
-#log { width: 300px; height: 200px; background-color: #111111; opacity: 0.7; position: absolute; bottom: 0; left: 50px; padding: 20px; }
+#log { width: 300px; height: 200px; position: absolute; bottom: 0; left: 50px; padding: 20px; box-shadow: 0 0 50px rgba(0, 0, 0, 0.3); background-color: rgba(0, 0, 0, 0.6); -webkit-border-radius: 5px; -moz-border-radius: 5px; -ms-border-radius: 5px; -o-border-radius: 5px; border-radius: 5px; }
 /* line 13, ../../sass/ui/log.scss */
 #log > span { display: block; }
 
@@ -52,21 +58,20 @@ canvas { display: block; }
 #top #age { color: white; text-align: center; }
 
 /* line 2, ../../sass/ui/window.scss */
-.window { position: absolute; top: 300px; left: 300px; color: white; background-color: #111111; opacity: 0.9; border: 1px solid #222222; width: 400px; box-shadow: 0 0 5px rgba(13, 79, 139, 0.3); }
-/* line 14, ../../sass/ui/window.scss */
-.window textarea { width: 100%; padding: 0; margin: 0; border: 0; height: 300px; background-color: #111111; border: 1px solid #222222; color: white; }
-/* line 26, ../../sass/ui/window.scss */
-.window.resizable { resize: both; overflow: auto; }
+.window { position: absolute; top: 300px; left: 300px; width: 400px; overflow: hidden; box-shadow: 0 0 50px rgba(0, 0, 0, 0.3); background-color: rgba(0, 0, 0, 0.6); -webkit-border-radius: 5px; -moz-border-radius: 5px; -ms-border-radius: 5px; -o-border-radius: 5px; border-radius: 5px; }
+/* line 12, ../../sass/ui/window.scss */
+.window textarea { width: 100%; padding: 0; margin: 0; border: 0; height: 300px; border: 1px solid #222222; color: white; }
+/* line 23, ../../sass/ui/window.scss */
+.window.unfocused { opacity: 0.7; }
 
-/* line 33, ../../sass/ui/window.scss */
-.window_header { font-size: 11px; text-align: center; text-transform: uppercase; padding: 10px; background-color: black; }
+/* line 29, ../../sass/ui/window.scss */
+.window_container { position: relative; color: white; overflow-y: scroll; }
+
+/* line 36, ../../sass/ui/window.scss */
+.window_header { font-size: 11px; color: white; text-align: center; text-transform: uppercase; padding: 0 10px; line-height: 30px; background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #15202a), color-stop(100%, rgba(0, 0, 0, 0))); background: -webkit-linear-gradient(top, #15202a, rgba(0, 0, 0, 0)); background: -moz-linear-gradient(top, #15202a, rgba(0, 0, 0, 0)); background: -o-linear-gradient(top, #15202a, rgba(0, 0, 0, 0)); background: linear-gradient(top, #15202a, rgba(0, 0, 0, 0)); letter-spacing: 2px; }
 
 /* line 42, ../../sass/ui/window.scss */
-.window_content { /*	padding: 20px;
-	overflow: scroll;*/ }
-
-/* line 48, ../../sass/ui/window.scss */
-.window_close_button { width: 20px; height: 20px; background-color: #ccc; position: absolute; right: 10px; top: 10px; }
+.window_content { padding: 20px; resize: none; }
 
 /* line 2, ../../sass/ui/tooltip.scss */
 .tooltip { background-color: #111111; opacity: 0.7; color: white; position: absolute; top: 0; left: 0; padding: 5px; }
@@ -78,7 +83,7 @@ canvas { display: block; }
 #actionbar { position: absolute; left: 0; top: 20%; }
 
 /* line 9, ../../sass/ui/actionbar.scss */
-.action { width: 50px; height: 50px; background-color: #111; opacity: 0.7; margin-bottom: 1px; }
+.action { width: 50px; height: 50px; margin-bottom: 1px; box-shadow: 0 0 50px rgba(0, 0, 0, 0.3); background-color: rgba(0, 0, 0, 0.6); -webkit-border-radius: 5px; -moz-border-radius: 5px; -ms-border-radius: 5px; -o-border-radius: 5px; border-radius: 5px; }
 
 /* line 2, ../../sass/ui/statbar.scss */
 .statbar { position: absolute; top: 50px; right: 20px; width: 200px; height: 10px; background-color: black; }
@@ -95,6 +100,6 @@ canvas { display: block; }
 .item_grid > li img { opacity: 0.6; display: block; width: 100%; height: 100%; }
 
 /* line 2, ../../sass/ui/context_menu.scss */
-.context_menu { background-color: #111111; opacity: 0.7; color: white; position: absolute; top: 0; left: 0; width: 200px; }
-/* line 12, ../../sass/ui/context_menu.scss */
-.context_menu span { padding: 0 5px; line-height: 30px; }
+.context_menu { background-color: rgba(21, 32, 42, 0.7); color: white; position: absolute; top: 0; left: 0; width: 175px; }
+/* line 11, ../../sass/ui/context_menu.scss */
+.context_menu span { display: block; padding: 0 20px; line-height: 30px; cursor: pointer; }

@@ -3,12 +3,10 @@
 	position: absolute;
 	top: 300px;
 	left: 300px;
-	color: white;
-	background-color: $primary_color;
-	opacity: 0.9;
-	border: 1px solid $border_color;
 	width: 400px;
-	box-shadow: 0 0 5px rgba( $glow_color, 0.3 );
+	overflow: hidden;
+	
+	@include default;
 	
 	textarea
 	{
@@ -17,39 +15,31 @@
 		margin: 0;
 		border: 0;
 		height: 300px;
-		background-color: $primary_color;
 		border: 1px solid $border_color;
 		color: $secondary_color;
 	}
-
-	&.resizable
+	
+	&.unfocused
 	{
-		resize: both;
-		overflow: auto;
+		opacity: 0.7;
 	}
+}
+
+.window_container
+{
+	position: relative;
+	color: white;
+	overflow-y: scroll;
 }
 
 .window_header
 {
 	font-size: 11px;
-	text-align: center;
-	text-transform: uppercase;
-	padding: 10px;
-	background-color: black;
+	@include header;
 }
 
 .window_content
 {
-/*	padding: 20px;
-	overflow: scroll;*/
-}
-
-.window_close_button
-{
-	width: 20px;
-	height: 20px;
-	background-color: #ccc;
-	position: absolute;
-	right: 10px;
-	top: 10px;
+	padding: 20px;
+	resize: none;
 }

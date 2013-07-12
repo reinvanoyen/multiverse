@@ -1,16 +1,17 @@
 .context_menu
 {
-	background-color: $primary_color;
-	opacity: 0.7;
+	background-color: rgba( $glow_color, 0.7 );
 	color: white;
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 200px;
+	width: 175px;
 	
 	span
 	{
-		padding: 0 5px;
+		display: block;
+		padding: 0 20px;
 		line-height: 30px;
+		cursor: pointer;
 	}
 }
