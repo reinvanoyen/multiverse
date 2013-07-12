@@ -11,6 +11,7 @@ var Player = Movable.extend( {
 		this.exhaust_flame = new ExhaustFlame();
 		this.dmg_smoke = new DamageSmoke();
 		this.exhaust_flame.start();
+		this.gun = new MissileLauncher();
 	},
 	hurt: function( n )
 	{
@@ -56,6 +57,7 @@ var Player = Movable.extend( {
 		this.exhaust_flume.direction = radian - Math.PI;
 		this.exhaust_flame.direction = radian - Math.PI;
 		this.dmg_smoke.direction = radian - Math.PI;
+		this.gun.direction = radian;
 	},
 	moveForward: function()
 	{
@@ -139,11 +141,15 @@ var Player = Movable.extend( {
 			}
 		}
 		
+		this.gun.fire();
+		
 		this.dmg_smoke.setPosition( this.position.x, this.position.y );
 		this.exhaust_flume.setPosition( this.position.x, this.position.y );
 		this.exhaust_flame.setPosition( this.position.x, this.position.y );
+		this.gun.setPosition( this.position.x, this.position.y );
 		this.exhaust_flume.update();
 		this.exhaust_flame.update();
+		this.gun.update();
 		this.dmg_smoke.update();
 		this.base();
 	},
@@ -151,6 +157,7 @@ var Player = Movable.extend( {
 	{
 		this.exhaust_flume.draw( stage );
 		this.exhaust_flame.draw( stage );
+		this.gun.draw( stage );
 		this.base( stage );
 		this.dmg_smoke.draw( stage );
 	}
